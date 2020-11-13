@@ -46,7 +46,7 @@ def LUfac(x):
 def PLUdet(x):
     """
     
-    Using the PLU decomposition, we calculate the determinant of x
+    Using the PLU decomposition, we calculate the determinant of x.
     
     """
     
