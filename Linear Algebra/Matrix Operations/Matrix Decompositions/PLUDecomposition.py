@@ -58,4 +58,4 @@ def PLUdet(x):
         detx = detx*L[i,i]*U[i,i]
     detx = detx*np.linalg.det(P)
     return detx
-    
+
