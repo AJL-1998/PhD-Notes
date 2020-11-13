@@ -6,6 +6,7 @@ def pivotize(m):
     Creates the pivoting matrix for m.
     
     """
+    
     n = len(m)
     ID = [[float(i == j) for i in range(n)] for j in range(n)]
     for j in range(n):
@@ -22,6 +23,7 @@ def LUfac(x):
     Px = LU.
     
     """
+    
     n = len(x)
     L = np.identity(n)
     U = x
@@ -40,3 +42,20 @@ def LUfac(x):
             for k in range(i,n):
                 U[j,k] = U[j, k] - L[j,i]*U[i,k]
     return P, L, U
+
+def PLUdet(x):
+    """
+    
+    Using the PLU decomposition, we calculate the determinant of x
+    
+    """
+    
+    xfac = LUfac(x)
+    P,L,U = xfac[0], xfac[1], xfac[2]
+    n = len(x)
+    detx = 1
+    for i in range(n):
+        detx = detx*L[i,i]*U[i,i]
+    detx = detx*np.linalg.det(P)
+    return detx
+    
