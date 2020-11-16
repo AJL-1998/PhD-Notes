@@ -2,6 +2,7 @@
 \author{Adam Lee}
 \title{Multiple Linear Regression}
 \date{November 2020}
+\usepackage{amsthm}
 \usepackage{pgfplots}
 \usepackage{graphicx}
 \usepackage{float}
@@ -21,9 +22,122 @@
 \usepackage{tablefootnote}
 \DeclareMathOperator{\var}{var}
 \renewcommand{\tabcolsep}{18pt}
+\newtheoremstyle{own}%
+    {5pt}% Space above
+    {5pt}% Space below
+    {}% Body font
+    {}% Indent amount
+    {\color{black}\bfseries}% Theorem head font
+    {:}% Punctuation after theorem head
+    {5pt}% Space after theorem head
+    {}% Theorem head spec
+\theoremstyle{own}
+\newtheorem{example}{Example}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
 \begin{document}
 \maketitle
 \pagebreak
 \section{Introduction}
+Our definition of linearity yields a significant amount of flexibility for our regression models. We can extend our definition for simple linear regression to form a regression model with multiple regressors each of which does not itself need to be linear but instead is accompanied by a linear coefficient. That is we can fit a model
+\begin{equation} \label{eq1}
+y = \beta_0 + \beta_1 x_1 + \cdots + \beta_n x_n + \varepsilon,
+\end{equation}
+where $y$ is our response variable and $x_i$ for $i = 1, \ldots, n$ are our regressors. It must be noted the term linear is used here since \cref{eq1} is a linear function of the unknown parameters $\beta_i$. This means we can choose our regressor terms freely. More complex models may allow for a polynomial fit.
+\begin{example}
+Consider the polynomial model
+\begin{equation}
+y = \beta_0 + \beta_1 x + \beta_2 x^2 + \varepsilon.
+\end{equation}
+If we let $x_i := x^i$ then this model takes the form
+\begin{equation}
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \varepsilon,
+\end{equation}
+and is a linear regression model with three unknown regression coefficients and two regressors. It is still linear in our coefficients $\beta_i$ however allows a much more flexible model.
+\end{example}
 
+We can extend our definition of a multiple linear regression model further to include interaction terms. For example, consider the model
+\begin{equation}
+y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_{12} x_1 x_2.
+\end{equation}
+If we rewrite this model such that $\beta_{12} x_1 x_2 = \beta_3 x_3$ then we have a model of a familiar form
+\[ y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_3.\]
+
+\section{Multiple Linear Regression}
+Let us focus on the generic case with model
+\begin{equation}
+y = \beta_0 + \beta_1 x_1 + \cdots + \beta_n x_n + \varepsilon.
+\end{equation}
+
+This model describes an $n + 1$ dimension hyperplane, as opposed to the regression line we constructed for the simple case. The parameters $\beta_i$ are our regression coefficients and in practice these, as well as the variance of the error $\epsilon$, are unknown. The particular parameter $\beta_j$ represents the expected change in $y$ per unit change in $x_j$ under the assumption that all other regressors $x_k,~( k \neq j )$ are constant. Figure \ref{fig1} provides graphic representation of a two-regressor, non-interacting model.
+\vspace{2mm}
+\hrule
+\begin{example}
+Consider a model where our expected error is zero
+\begin{equation} \label{eq2}
+E(y) = 10 + 15x_1 + 4x_2.
+\end{equation}
+We can examine the hyperplane this model describes.
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.5\textwidth]{f4}
+\caption{Hyperplane plot for \cref{eq2}}
+\label{fig1}
+\end{figure}
+\end{example}
+\hrule
+\vspace{2mm}
+\section{Estimation of Parameters}
+\subsection{Least-Squares Estimation}
+We have already come across the least-squares estimation of parameters for simple linear regression, and this method can be extended for multiple linear regression.
+
+Let us assume we have a data-set $\varkappa = \{y_i, x_{i1}, \ldots, x_{in} \}_{i=0}^k$ where $n > k$. Here, $y_i$ denotes the $i$-th observed response and $x_{ij}$ denotes the observed value $x_i$ for regressor $x_j$. Then, we have a system of model equations
+\begin{equation}
+y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + \cdots + \beta_n x_{in} ~~ i = 0, \ldots, k.
+\end{equation}
+We can then assume matrix notation for the entire set such that
+\begin{equation}
+\mathbf{y} = X \boldsymbol\beta + \boldsymbol\varepsilon.
+\end{equation}
+where
+\begin{equation}
+\mathbf{y} = \left( \begin{matrix} y_0 \\ y_1 \\ \vdots \\ y_k \end{matrix} \right),
+\end{equation}
+\begin{equation}
+X = \left( \begin{matrix}
+1 & x_{01} & \cdots & x_{0n} \\
+1 & x_{11} & \cdots & x_{1n} \\
+\vdots & \vdots & \ddots & \vdots \\
+1 & x_{k1} & \cdots & x_{kn} 
+\end{matrix} \right),
+\end{equation}
+\begin{equation}
+\boldsymbol\beta = \left( \begin{matrix} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_n \end{matrix} \right),
+\end{equation}
+and
+\begin{equation}
+\boldsymbol\varepsilon = \left( \begin{matrix} \varepsilon_0 \\ \varepsilon_1 \\ \vdots \\ \varepsilon_k \end{matrix} \right).
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 \end{document}
