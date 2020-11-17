@@ -89,9 +89,6 @@ We can examine the hyperplane this model describes.
 \end{example}
 \hrule
 \vspace{2mm}
-\section{Estimation of Parameters}
-\subsection{Least-Squares Estimation}
-We have already come across the least-squares estimation of parameters for simple linear regression, and this method can be extended for multiple linear regression.
 
 Let us assume we have a data-set $\varkappa = \{y_i, x_{i1}, \ldots, x_{in} \}_{i=0}^k$ where $n > k$. Here, $y_i$ denotes the $i$-th observed response and $x_{ij}$ denotes the observed value $x_i$ for regressor $x_j$. Then, we have a system of model equations
 \begin{equation}
@@ -120,9 +117,29 @@ and
 \begin{equation}
 \boldsymbol\varepsilon = \left( \begin{matrix} \varepsilon_0 \\ \varepsilon_1 \\ \vdots \\ \varepsilon_k \end{matrix} \right).
 \end{equation}
-Clearly, this is a closed system so we can formulate arguments for all $\beta$ with the information contained within this problem.
-
-
+The task then becomes fitting this linear model such that the coefficients $\boldsymbol\beta$ minimize the error term $\boldsymbol\varepsilon = \mathbf{y} - X \boldsymbol\beta$. A common method for determining these parameters is the method of least-squares, which we have already come across for the simple linear regression case. The same principles can be extended to multiple linear regression.
+\section{Method of Least-Squares}
+Let us define the multivariate least-squares criterion function
+\begin{align} \nonumber
+\mathbb{E}(\boldsymbol\beta) := \sum_{i = 0}^k \varepsilon_i^2 & = \boldsymbol\varepsilon^{\text{T}} \boldsymbol\varepsilon = (\mathbf{y} - X \boldsymbol\beta)^{\text{T}} (\mathbf{y} - X \boldsymbol\beta) \\
+& = \mathbf{y}^{\text{T}}\mathbf{y} - 2\boldsymbol\beta^{\text{T}}X^{\text{T}}\mathbf{y} + \boldsymbol\beta^{\text{T}}X^{\text{T}} X\boldsymbol\beta.
+\end{align}
+Then, we look for $k+1$ vector $\hat{\boldsymbol\beta}$ such that
+\begin{equation}
+\arg \min \mathbb{E} (\boldsymbol\beta) = \hat{\boldsymbol\beta}.
+\end{equation}
+To do so we must have
+\begin{equation}
+\frac{\partial \mathbb{E}}{\partial \boldsymbol\beta} \Big|_{\hat{\boldsymbol\beta}} = -2X^{\text{T}}\mathbf{y} + 2 X^{\text{T}} X \hat{\boldsymbol\beta} =  0,
+\end{equation}
+which we can simplify to
+\begin{equation}
+X^{\text{T}} X \hat{\boldsymbol\beta} = X^{\text{T}}\mathbf{y}.
+\end{equation}
+Then, provided the inverse matrix $(X^{\text{T}} X)^{-1}$ exists, our solution is
+\begin{equation}
+\hat{\boldsymbol\beta} = (X^{\text{T}} X)^{-1} X^{\text{T}}\mathbf{y}.
+\end{equation}
 
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.16)  16 NOV 2020 16:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.16)  17 NOV 2020 10:20
 entering extended mode
 **"./Multiple Linear Regression.tex"
 ("Multiple Linear Regression.tex"
@@ -1016,7 +1016,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<f4.pdf, id=24, 433.62pt x 289.08pt>
+<f4.pdf, id=20, 433.62pt x 289.08pt>
 File: f4.pdf Graphic file (type pdf)
 <use f4.pdf>
 Package pdftex.def Info: f4.pdf  used on input line 85.
@@ -1046,16 +1046,16 @@ Before submitting the final camera ready copy, remember to:
 ] ("Multiple Linear Regression.aux")
 Package rerunfilecheck Info: File `"Multiple Linear Regression".out' has not ch
 anged.
-(rerunfilecheck)             Checksum: 96AE927FCA426B4B1697BB167341E3F2;240.
+(rerunfilecheck)             Checksum: CCE58CEF5D943A1A0597017EC92FD8F6;166.
  ) 
 Here is how much of TeX's memory you used:
- 31731 strings out of 479799
- 767158 string characters out of 2869722
- 1115043 words of memory out of 3000000
- 48176 multiletter control sequences out of 15000+200000
- 638547 words of font info for 133 fonts, out of 3000000 for 9000
+ 31734 strings out of 479799
+ 767192 string characters out of 2869722
+ 1115040 words of memory out of 3000000
+ 48175 multiletter control sequences out of 15000+200000
+ 638489 words of font info for 133 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,9n,109p,748b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 99i,12n,109p,748b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:
 /Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx1
 0.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
@@ -1063,17 +1063,18 @@ Here is how much of TeX's memory you used:
 /amsfonts/cm/cmmi10.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/typ
 e1/public/amsfonts/cm/cmmi7.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/adayr/AppData/Local/Program
-s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/adayr/AppData/Local
-/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/adayr/AppDat
-a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/ada
-yr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb
-><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb
-><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb
-><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pf
-b>
-Output written on "Multiple Linear Regression.pdf" (2 pages, 132728 bytes).
+s/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/Users/adayr/AppData
+/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/adayr
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/User
+s/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+msy7.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/symbols/msbm10.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type
+1/urw/times/utmb8a.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type
+1/urw/times/utmr8a.pfb>
+Output written on "Multiple Linear Regression.pdf" (2 pages, 145291 bytes).
 PDF statistics:
- 131 PDF objects out of 1000 (max. 8388607)
- 22 named destinations out of 1000 (max. 500000)
- 50 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 137 PDF objects out of 1000 (max. 8388607)
+ 26 named destinations out of 1000 (max. 500000)
+ 42 words of extra memory for PDF output out of 10000 (max. 10000000)
 
