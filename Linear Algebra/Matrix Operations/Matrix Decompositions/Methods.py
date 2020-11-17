@@ -1,9 +1,20 @@
 import numpy as np
+import math
+"""
+
+A set of methods for matrix decompositions. Currently includes
+- PLU decomposition A = PLU
+- Cholesky decomposition A = LL ** T
+
+A.J.Lee
+
+"""
+
 
 def pivotize(m):
     """
     
-    Creates the pivoting matrix for m.
+    Creates the pivoting matrix for m with regards to PLUfac.
     
     """
     
@@ -15,7 +26,7 @@ def pivotize(m):
             ID[j], ID[row] = ID[row], ID[j]
     return ID
 
-def LUfac(x):
+def PLUfac(x):
     """
     
     Returns matrices P, L, U of the decomposition:
@@ -43,19 +54,27 @@ def LUfac(x):
                 U[j,k] = U[j, k] - L[j,i]*U[i,k]
     return P, L, U
 
-def PLUdet(x):
+def Chol(A):
     """
     
-    Using the PLU decomposition, we calculate the determinant of x.
-    
+
+    Parameters
+    ----------
+    A : POSITIVE-DEFINITE MATRIX.
+
+    Returns
+    -------
+    L : LOWER TRIANGULAR MATRIX SUCH THAT A = LL ** T.
+
     """
     
-    xfac = LUfac(x)
-    P,L,U = xfac[0], xfac[1], xfac[2]
-    n = len(x)
-    detx = 1
-    for i in range(n):
-        detx = detx*L[i,i]*U[i,i]
-    detx = detx*np.linalg.det(P)
-    return detx
+        
+    n = len(A)
+    L = np.zeros((n,n))
+    for k in range(n):
+        L[k,k] = math.sqrt(A[k,k] - sum(L[k,j] ** 2 for j in range(k)))
+        for i in range(k,n):
+            L[i,k] = (1 / L[k,k]) * (A[i,k] - sum(L[i,j]*L[k,j] for j in range(i)))
+    
+    return L
 

@@ -117,7 +117,7 @@ and
 \begin{equation}
 \boldsymbol\varepsilon = \left( \begin{matrix} \varepsilon_0 \\ \varepsilon_1 \\ \vdots \\ \varepsilon_k \end{matrix} \right).
 \end{equation}
-The task then becomes fitting this linear model such that the coefficients $\boldsymbol\beta$ minimize the error term $\boldsymbol\varepsilon = \mathbf{y} - X \boldsymbol\beta$. A common method for determining these parameters is the method of least-squares, which we have already come across for the simple linear regression case. The same principles can be extended to multiple linear regression.
+The task then becomes fitting this linear model such that the coefficients $\boldsymbol\beta$ minimize the error term $\boldsymbol\varepsilon = \mathbf{y} - X \boldsymbol\beta$. A common method for determining these parameters is the method of least-squares, which we have already come across for the simple linear regression case. The same principles can be extended to multiple linear regression. Let us set $p = k+1, q = n+1$ moving forward for convenience.
 \section{Method of Least-Squares}
 Let us define the multivariate least-squares criterion function
 \begin{align} \nonumber
@@ -140,8 +140,32 @@ Then, provided the inverse matrix $(X^{\text{T}} X)^{-1}$ exists, our solution i
 \begin{equation}
 \hat{\boldsymbol\beta} = (X^{\text{T}} X)^{-1} X^{\text{T}}\mathbf{y}.
 \end{equation}
+Let us examine the matrix $X^{\text{T}} X$ in detail. By \cref{posdef}, $X^{\text{T}} X$ is a positive-definite matrix of the form
+\begin{equation*} \arraycolsep=1.4pt\def\arraystretch{2.2}
+\left[ \begin{array}{ccccc} q & \sum_{i = 0}^k x_{i1} & \sum_{i = 0}^k x_{i2} & \cdots & \sum_{i = 0}^k x_{in} \\
+             \sum_{i = 0}^k x_{i1} & \sum_{i = 0}^k x_{i1}^2 & \sum_{i = 0}^k x_{i1}x_{i2} & \cdots & \sum_{i = 0}^k x_{i1}x_{in} \\
+             \sum_{i = 0}^k x_{i2} & \vdots & \ddots & & \vdots\\
+             \vdots				   & \vdots &  & \ddots & \vdots \\
+             \sum_{i = 0}^k x_{in} & \sum_{i = 0}^k x_{i1}x_{in}  & \cdots & \cdots & \sum_{i = 0}^k x_{in}^2
 
+\end{array} \right]
+\end{equation*}
 
+\pagebreak
+\appendix
+\section{Linear Algebra Proofs}
+\begin{thm} \label{posdef}
+For any real, invertible matrix $A \in \mathbb{R}^{n \times n}$, the product matrix $A^{\text{T}}A$ is positive definite i.e
+\begin{equation}
+\mathbf{z}^{\text{T}} A^{\text{T}}A \mathbf{z} > 0 ~ \forall ~ \mathbf{z} \in \mathbb{R}^{n}
+\end{equation}
+\end{thm}
+\begin{proof}
+\begin{align} \nonumber
+\mathbf{z}^{\text{T}} A^{\text{T}}A \mathbf{z} & = (A \mathbf{z})^{\text{T}} (A \mathbf{z}) \\
+& = || Az ||^2 > 0.
+\end{align}
+\end{proof}
 
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.16)  17 NOV 2020 10:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.16)  17 NOV 2020 14:55
 entering extended mode
 **"./Multiple Linear Regression.tex"
 ("Multiple Linear Regression.tex"
@@ -1016,7 +1016,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<f4.pdf, id=20, 433.62pt x 289.08pt>
+<f4.pdf, id=24, 433.62pt x 289.08pt>
 File: f4.pdf Graphic file (type pdf)
 <use f4.pdf>
 Package pdftex.def Info: f4.pdf  used on input line 85.
@@ -1030,6 +1030,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 85--86
 
 
  <./f4.pdf>]
+** WARNING: Ignoring useless \section in Appendix (line 156).
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1041,19 +1042,17 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[2
-
-] ("Multiple Linear Regression.aux")
+[2] ("Multiple Linear Regression.aux")
 Package rerunfilecheck Info: File `"Multiple Linear Regression".out' has not ch
 anged.
-(rerunfilecheck)             Checksum: CCE58CEF5D943A1A0597017EC92FD8F6;166.
+(rerunfilecheck)             Checksum: 0FCF7C857699B5F3655F97AA1D1081E4;210.
  ) 
 Here is how much of TeX's memory you used:
- 31734 strings out of 479799
- 767192 string characters out of 2869722
- 1115040 words of memory out of 3000000
- 48175 multiletter control sequences out of 15000+200000
- 638489 words of font info for 133 fonts, out of 3000000 for 9000
+ 31744 strings out of 479799
+ 767317 string characters out of 2869722
+ 1115095 words of memory out of 3000000
+ 48178 multiletter control sequences out of 15000+200000
+ 640761 words of font info for 135 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,12n,109p,748b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:
@@ -1071,10 +1070,11 @@ s/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 msy7.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
 nts/symbols/msbm10.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type
 1/urw/times/utmb8a.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type
-1/urw/times/utmr8a.pfb>
-Output written on "Multiple Linear Regression.pdf" (2 pages, 145291 bytes).
+1/urw/times/utmr8a.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type
+1/urw/times/utmri8a.pfb>
+Output written on "Multiple Linear Regression.pdf" (2 pages, 162416 bytes).
 PDF statistics:
- 137 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 500000)
- 42 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 151 PDF objects out of 1000 (max. 8388607)
+ 31 named destinations out of 1000 (max. 500000)
+ 50 words of extra memory for PDF output out of 10000 (max. 10000000)
 
