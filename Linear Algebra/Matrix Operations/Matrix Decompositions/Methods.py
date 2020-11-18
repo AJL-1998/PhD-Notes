@@ -7,6 +7,7 @@ A set of methods for matrix decompositions. Currently includes
 - Cholesky decomposition A = LL ** T
 - Inverse of a lower triangular matrix
 - Inverse of an upper triangular matrix
+- Householder Alg
 
 A.J.Lee
 
@@ -117,4 +118,44 @@ def UpperInv(U):
     U = np.transpose(U)
     X = np.transpose(LowerInv(U))
     
+    return X
+
+def HouseholderAlg(X):
+    """
+    
+
+    Parameters
+    ----------
+    X : SQUARE MATRIX
+
+    Returns
+    -------
+    X : UPPER HESSENBERG FORM OF X.
+
+    """
+    n = len(X)
+    for k in range(n-2):
+        A = np.zeros((n,n))
+        v = np.zeros((n,1))
+        e = np.zeros((n,1))
+        e[k+1] = 1
+        
+        if X[k+1,k] < 0:
+            SG = -1
+        else:
+            SG = 1
+        for j in range(k+1,n):
+            v[j] = X[j,k]
+        sigma = np.sqrt(sum(v[i] ** 2 for i in range(n)))
+        v = v + SG*sigma*e
+        v = v / np.sqrt(sum(v[i] ** 2 for i in range(n)))
+        for i in range(k+1, n):
+            for j in range(k+1,n):
+                A[i,j] = v[i]*v[j]
+        H = np.identity(n) - 2 * A
+        
+        X = (H @ X) @ H
+        
+        X = np.round(X, 14)
+        
     return X
