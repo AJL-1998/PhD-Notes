@@ -7,12 +7,28 @@ A set of methods for matrix decompositions. Currently includes
 - Cholesky decomposition A = LL ** T
 - Inverse of a lower triangular matrix
 - Inverse of an upper triangular matrix
-- Householder Alg
+- Householder Alg & subroutines required
 
 A.J.Lee
 
 """
-
+def matmul(M, X, a, b):
+    N = len(M)
+    MX = np.zeros((N,N))
+    for i in range(a,N):
+        for j in range(b,N):
+            MX[i,j] = sum(M[i,k]*X[k,j] for k in range(N))
+    return MX
+def rowret(X, a):
+    n = len(X)
+    A = np.zeros((n,n))
+    A[0:a,:] = X[0:a,:]
+    return A
+def colret(X, a):
+    n = len(X)
+    A = np.zeros((n,n))
+    A[:,0:a] = X[:,0:a]
+    return A
 
 def pivotize(m):
     """
@@ -134,6 +150,8 @@ def HouseholderAlg(X):
 
     """
     n = len(X)
+    HX = np.zeros((n,n))
+    HXH = np.zeros((n,n))
     for k in range(n-2):
         A = np.zeros((n,n))
         v = np.zeros((n,1))
@@ -154,8 +172,14 @@ def HouseholderAlg(X):
                 A[i,j] = v[i]*v[j]
         H = np.identity(n) - 2 * A
         
-        X = (H @ X) @ H
+        HX = rowret(X,k) + matmul(H, X, k, 0)
+        HXH = colret(HX,k)  + matmul(HX, H, 0, k)
         
-        X = np.round(X, 14)
+        X = HXH
+        
+    for i in range(n):
+        for j in range(n):
+            if i > j + 1 :
+                X[i,j] = 0
         
     return X
