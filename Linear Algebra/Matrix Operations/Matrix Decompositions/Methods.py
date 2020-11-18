@@ -5,6 +5,8 @@ import math
 A set of methods for matrix decompositions. Currently includes
 - PLU decomposition A = PLU
 - Cholesky decomposition A = LL ** T
+- Inverse of a lower triangular matrix
+- Inverse of an upper triangular matrix
 
 A.J.Lee
 
@@ -78,3 +80,41 @@ def Chol(A):
     
     return L
 
+def LowerInv(L):
+    """
+    
+
+    Parameters
+    ----------
+    L : LOWER TRIANGULAR MATRIX.
+
+    Returns
+    -------
+    X : INVERSE MATRIX L ** -1.
+
+    """
+    n = len(L)
+    X = np.zeros((n,n))
+    for i in range(n):
+        X[i,i] = 1/L[i,i]
+        for j in range(i+1,n):
+            X[j,i] = -(1 / L[j,j]) * sum(L[j,k] * X[k,i] for k in range(0,j))
+    return X
+
+def UpperInv(U):
+    """
+    
+
+    Parameters
+    ----------
+    U : UPPER TRIANGULAR MATRIX.
+
+    Returns
+    -------
+    X : INVERSE MATRIX U ** -1.
+
+    """
+    U = np.transpose(U)
+    X = np.transpose(LowerInv(U))
+    
+    return X
