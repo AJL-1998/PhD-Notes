@@ -26,6 +26,14 @@ class nummatrix:
                                 Hessenberg form
         CholD          : The Cholesky decomposition, performed on
                             pos-def matrices ONLY.
+                            
+    NOTES
+    ------------
+        The matrix class will only be well defined if the attribute body is a list. No input will automatically set
+            self.A to be an empty matrix. If you have an np.array X *in R^{a x b}* you wish to input,
+            the best way to do so would be to follow this code:
+                X = np.hstack(X).tolist()
+                Xclass = nummatrix(nd = [a,b], body = X, shape = ... )
     
     """
     def __init__(self, nd = [0,0], body = [], shape = 'unknown'):
