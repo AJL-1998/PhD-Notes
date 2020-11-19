@@ -2,10 +2,11 @@ import numpy as np
 import math
 
 class nummatrix:
+    
     """
     DESCRIPTION
     ------------
-        A class for matrices using numpy.array
+        A class for numerical matrices using numpy.array
         
     ATTRIBUTES
     ------------
@@ -37,6 +38,9 @@ class nummatrix:
                 Xclass = nummatrix(nd = [a,b], body = X, shape = ... )
     
     """
+    
+    
+    
     def __init__(self, nd = [0,0], body = [], shape = 'unknown'):
         if nd[0] == nd[1] and 'square' not in shape:
             shape += ' square'
@@ -155,7 +159,7 @@ class nummatrix:
         def pivotize(m):
 
             n = len(m)
-            ID = [[float(i == j) for i in range(n)] for j in range(n)]
+            ID = np.identity(n)
             for j in range(n):
                 row = max(range(j, n), key=lambda i: abs(m[i][j]))
                 if j != row:
@@ -182,8 +186,8 @@ class nummatrix:
         self.P = P
         self.L = L
         self.U = U
-x = nummatrix(nd = [5,5], body = np.random.rand(25).tolist())
-x.CholD()
+x = nummatrix(nd = [4,4], body = 10*np.random.rand(25).tolist())
+x.PLUfac()
 print(x.P)
 print(x.L)
 print(x.U)
