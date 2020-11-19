@@ -10,9 +10,11 @@ class nummatrix:
     ------------
         nd    : dimensions of matrix i.e. [3,2] is a 3 x 2 matrix
         body  : a LIST of the matrix elements
-                    read from left to right (MUST BE OF TYPE LIST) e.g.
-                        {nd = [3,3], body = [i for i in range(9)]} represents
-                        np.array([[0,1,2],[3,4,5],[6,7,8]])
+                    read from left to right (MUST BE OF TYPE LIST AND NUMERICAL)
+                        e.g.
+                            {nd = [3,3], body = [i for i in range(9)]} 
+                                represents
+                                    np.array([[0,1,2],[3,4,5],[6,7,8]])
         shape : 'square', 'positive-definite', etc...
         
     METHODS
