@@ -12,7 +12,7 @@ A set of methods for matrix decompositions. Currently includes
 A.J.Lee
 
 """
-def matmul(M, X, a, b):
+"""def matmul(M, X, a, b):
     N = len(M)
     MX = np.zeros((N,N))
     for i in range(a,N):
@@ -28,7 +28,7 @@ def colret(X, a):
     n = len(X)
     A = np.zeros((n,n))
     A[:,0:a] = X[:,0:a]
-    return A
+    return A"""
 
 def pivotize(m):
     """
@@ -142,13 +142,30 @@ def HouseholderAlg(X):
 
     Parameters
     ----------
-    X : SQUARE MATRIX
+    X : SQUARE MATRIX.
 
     Returns
     -------
     X : UPPER HESSENBERG FORM OF X.
 
     """
+    def matmul(M, X, a, b):
+        N = len(M)
+        MX = np.zeros((N,N))
+        for i in range(a,N):
+            for j in range(b,N):
+                MX[i,j] = sum(M[i,k]*X[k,j] for k in range(N))
+        return MX
+    def rowret(X, a):
+        n = len(X)
+        A = np.zeros((n,n))
+        A[0:a,:] = X[0:a,:]
+        return A
+    def colret(X, a):
+        n = len(X)
+        A = np.zeros((n,n))
+        A[:,0:a] = X[:,0:a]
+        return A
     n = len(X)
     HX = np.zeros((n,n))
     HXH = np.zeros((n,n))

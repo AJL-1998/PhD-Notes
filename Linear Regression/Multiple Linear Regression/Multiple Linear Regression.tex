@@ -150,8 +150,9 @@ Let us examine the matrix $X^{\text{T}} X$ in detail. By \cref{posdef}, $X^{\tex
 
 \end{array} \right]
 \end{equation*}
+Inversion of this matrix can be tricky using orthodox methods in practical examples with large data-sets. However, we know enough about this matrix to manipulate it in such a way where this problem is simplified [\ref{ap:2}].
 
-\pagebreak
+
 \appendix
 \section{Linear Algebra Proofs}
 \begin{thm} \label{posdef}
@@ -166,7 +167,31 @@ For any real, invertible matrix $A \in \mathbb{R}^{n \times n}$, the product mat
 & = || Az ||^2 > 0.
 \end{align}
 \end{proof}
-
+\begin{thm} \label{ap:2}
+For a positive-definite matrix $A$, there exists a lower-triangular matrix $U$ such that
+\begin{equation}
+A^{-1} = U U^{T}
+\end{equation}
+\end{thm}
+\begin{proof}
+For positive-definite matrix $A$, we have a Cholesky decomposition such that
+\begin{equation}
+A = L L^{\text{T}},
+\end{equation}
+then we have
+\begin{equation}
+A A^{-1} = L L^{\text{T}} A^{-1} = I,
+\end{equation}
+that is
+\begin{equation}
+A^{-1} = ( L^{\text{T}} )^{-1} L^{-1}.
+\end{equation}
+Since $L$ is lower triangular, if we write $( L^{\text{T}} )^{-1} = U$ then we have
+\begin{equation}
+A^{-1} = U U^{\text{T}},
+\end{equation}
+which is a positive-definite symmetric matrix such that we need only compute the upper-triangular elements of $U U^{\text{T}}$ in order to know all elements of $A^{-1}$.
+\end{proof}
 
 
 

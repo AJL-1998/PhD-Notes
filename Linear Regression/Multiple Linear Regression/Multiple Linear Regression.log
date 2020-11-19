@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.16)  18 NOV 2020 13:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.16)  19 NOV 2020 11:45
 entering extended mode
 **"./Multiple Linear Regression.tex"
 ("Multiple Linear Regression.tex"
@@ -1030,7 +1030,7 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 85--86
 
 
  <./f4.pdf>]
-** WARNING: Ignoring useless \section in Appendix (line 156).
+** WARNING: Ignoring useless \section in Appendix (line 157).
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -1048,10 +1048,10 @@ anged.
 (rerunfilecheck)             Checksum: 0FCF7C857699B5F3655F97AA1D1081E4;210.
  ) 
 Here is how much of TeX's memory you used:
- 31744 strings out of 479799
- 767317 string characters out of 2869722
- 1115095 words of memory out of 3000000
- 48178 multiletter control sequences out of 15000+200000
+ 31752 strings out of 479799
+ 767449 string characters out of 2869722
+ 1117150 words of memory out of 3000000
+ 48180 multiletter control sequences out of 15000+200000
  640761 words of font info for 135 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,12n,109p,748b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1072,9 +1072,9 @@ nts/symbols/msbm10.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type
 1/urw/times/utmb8a.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type
 1/urw/times/utmr8a.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type
 1/urw/times/utmri8a.pfb>
-Output written on "Multiple Linear Regression.pdf" (2 pages, 162416 bytes).
+Output written on "Multiple Linear Regression.pdf" (2 pages, 166445 bytes).
 PDF statistics:
- 151 PDF objects out of 1000 (max. 8388607)
- 31 named destinations out of 1000 (max. 500000)
+ 161 PDF objects out of 1000 (max. 8388607)
+ 37 named destinations out of 1000 (max. 500000)
  50 words of extra memory for PDF output out of 10000 (max. 10000000)
 
