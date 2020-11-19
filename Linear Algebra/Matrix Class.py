@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 class nummatrix:
     """
@@ -23,18 +24,12 @@ class nummatrix:
                                 if shape is unknown square
         HouseholderAlg : Householder's method for reduction to Upper
                                 Hessenberg form
-    
-    
-    
-    
-    
-    
-    
-    A.J. LEE
+        CholD          : The Cholesky decomposition, performed on
+                            pos-def matrices ONLY.
     
     """
     def __init__(self, nd = [0,0], body = [], shape = 'unknown'):
-        if nd[0] == nd[1] and shape != 'square':
+        if nd[0] == nd[1] and 'square' not in shape:
             shape += ' square'
         self.shape = shape
         self.A = np.zeros((nd[0],nd[1]))
@@ -45,6 +40,7 @@ class nummatrix:
         for i in range(nd[0]):
             for j in range(nd[1]):
                 self.A[i,j] = body[j + nd[1]*i]
+        
                 
     def __inv__(self):
         C = np.linalg.inv(self.A)
@@ -121,5 +117,18 @@ class nummatrix:
         
         return X
     
-x = nummatrix(nd = [5,5],body = np.random.rand(18).tolist())
-print(x.A)
+    def CholD(self):
+        if 'positive-definite' not in self.shape:
+            self.L = 'Please use LUDec for non positive-definite matrices :)'
+        else:
+            X = self.A
+            n = len(X)
+            L = np.zeros((n,n))
+            for k in range(n):
+                L[k,k] = math.sqrt(X[k,k] - sum(L[k,j] ** 2 for j in range(k)))
+                for i in range(k,n):
+                    L[i,k] = (1 / L[k,k]) * (X[i,k] - sum(L[i,j]*L[k,j] for j in range(i)))
+            self.L = L
+x = nummatrix(nd = [5,5], body = np.random.rand(25).tolist())
+x.CholD()
+print(x.L)
