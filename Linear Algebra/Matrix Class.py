@@ -73,7 +73,7 @@ class nummatrix:
 
         """
         if 'square' in self.shape:
-            X = self.A
+            X = np.copy(self.A)
         else:
             return 'Matrix not square'
         
@@ -128,7 +128,7 @@ class nummatrix:
                 if i > j + 1 :
                     X[i,j] = 0
         
-        return X
+        self.H = X
     
     def CholD(self):
         if 'positive-definite' not in self.shape:
@@ -137,7 +137,7 @@ class nummatrix:
             self.U = 0
             
         else:
-            X = self.A
+            X = np.copy(self.A)
             n = len(X)
             L = np.zeros((n,n))
             for k in range(n):
@@ -165,7 +165,7 @@ class nummatrix:
                 if j != row:
                     ID[j], ID[row] = ID[row], ID[j]
             return ID
-        x = self.A
+        x = np.copy(self.A)
         n = len(x)
         L = np.identity(n)
         U = x
@@ -186,8 +186,3 @@ class nummatrix:
         self.P = P
         self.L = L
         self.U = U
-x = nummatrix(nd = [4,4], body = 10*np.random.rand(25).tolist())
-x.PLUfac()
-print(x.P)
-print(x.L)
-print(x.U)
