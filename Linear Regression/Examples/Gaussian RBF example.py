@@ -1,12 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-d = 10
+d = 11
 N = 20
 N_star = 100
 x = np.linspace(0.0, 10.0, N)
 x_star = np.linspace(0.0, 10.0, N_star)
-y = np.vstack(x * np.sin(0.5*x ** 2))
+y = np.vstack(x * np.sin(0.5*x))
+epsilon = np.random.normal(size = (N,1))
+y += epsilon
 
 centres = np.array([i for i in range(d)])
 X = np.zeros((N, d))
@@ -27,3 +29,4 @@ plt.figure()
 plt.plot(x_star, y_star, color = 'red')
 plt.scatter(x, y, marker = '.')
 plt.show()
+print(epsilon)
