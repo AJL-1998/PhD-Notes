@@ -1,0 +1,55 @@
+\documentclass[10pt,a4paper, twocolumn, conference]{IEEEtran}
+\author{Adam Lee}
+\title{Gaussian Processes - Principle Ideas}
+\date{November 2020}
+\usepackage{amsthm}
+\usepackage{pgfplots}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{verbatim}
+\usepackage{amsbsy}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{placeins}
+\usepackage{subcaption}
+\usepackage{tablefootnote}
+\DeclareMathOperator{\var}{var}
+\renewcommand{\tabcolsep}{18pt}
+\newtheoremstyle{own}%
+    {5pt}% Space above
+    {5pt}% Space below
+    {}% Body font
+    {}% Indent amount
+    {\color{black}\bfseries}% Theorem head font
+    {:}% Punctuation after theorem head
+    {5pt}% Space after theorem head
+    {}% Theorem head spec
+\theoremstyle{own}
+\newtheorem{example}{Example}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\begin{document}
+\maketitle
+\section{Introduction}
+In simple and non-simple linear regression, we attempt to model a variable $y$ as a function of independent variables $\mathbf{x}$ assuming some error value $\boldsymbol\epsilon$ e.g. $y = \mathbf{x}^{\text{T}} \boldsymbol\beta + \boldsymbol\epsilon$. It is common to assume the error terms $\boldsymbol\epsilon$ are Gaussian distributed with constant variance $\sigma ^  2$. A Bayesian approach to linear regression assumes a probabalistic space on the parameters $\boldsymbol\beta$ which get updated as more data is observed. Gaussian processes (or GPs) provide a \textit{non-parametric} approach to regression problems by finding a distribution over the possible functions $f(\mathbf{x})$ that are consistent with our observed data. This is still a Bayesian approach, we begin with a prior distribution (in the forms of a mean function $m$ and a kernel function $\kappa \left( \mathbf{x}, \mathbf{x^\prime} \right) $ ) which we update using Bayes' rule as more and more data is observed. In this report, we shall discuss the principle ideas behind Gaussian processes, and begin to build the foundations for constructing such a process. To finish, we shall consider why we would want to use a GP instead of linear regression and some of the problems we face with implementing GPs.
+\section{Multivariate Gaussian Distributions}
+We start by considering mutivariate gaussian distribution. We say a $k$ dimension random vector $\mathbf{x}$ is Gaussian distributed if
+\begin{equation}
+\mathbf{x} \sim \mathcal{N}( \boldsymbol\mu, \Sigma ),
+\end{equation}
+where $\boldsymbol\mu = [\mu_1, \ldots, \mu_k]$ is the expected value of $\mathbf{x}$ and $\Sigma$ is a covariance matrix, determining the similarity of two random variables $x_i, x_j\in~\mathbf{x}$. If we consider a bivariate case centered about a mean $\boldsymbol\mu = [0,0]$ with covariance matrix
+\begin{equation}
+\Sigma = \left[ \begin{matrix}
+1 & 0.5 \\ 0.5 & 1 
+\end{matrix} \right]
+\end{equation}
+\end{document}
