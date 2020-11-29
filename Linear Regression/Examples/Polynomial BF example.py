@@ -22,4 +22,4 @@ Y = X @ H
 plt.figure()
 plt.scatter(x_vals, y_vals, marker = '.')
 plt.plot(Y, color = 'red')
-plt.show()
+plt.savefig('reg_ex1.pdf')
