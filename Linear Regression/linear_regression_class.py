@@ -41,8 +41,6 @@ class LinearRegression:
         self.X = phi(x_vals[0])
         for i in range(1,self.N):
             self.X = np.vstack((self.X,phi(x_vals[i])))
-        '''self.H = np.linalg.inv( np.copy(self.X).T @ np.copy(self.X) )
-        self.theta = self.H @ self.X.T @ np.vstack(self.y_vals)'''
         
     def param_form(self):
         def Chol(A):
@@ -78,15 +76,18 @@ class LinearRegression:
         self.y_star = self.X_star @ self.theta
 
 def kernel(x):
-    return np.array([x ** i for i in range(6)])
+    centres = np.linspace(0.0, 50.0, 20)
+    n = len(centres)
+    return np.array([np.exp(-0.5*(x - centres[i]) ** 2) for i in range(n)])
 
+n = len(np.linspace(0.0, 50.0, 20))
 var = 10000
-x_vals = np.random.uniform(0.0,100.0,200)
+x_vals = np.random.uniform(0.0,50,200)
 y_vals = 2 + x_vals + x_vals ** 2 - 0.01*x_vals ** 3
 epsilon = np.sqrt(var)*np.random.normal(size = 200)
 y_vals = y_vals + epsilon
-x_star = np.linspace(0.0,100.0,500)
-linreg = LinearRegression(x_vals, y_vals, x_star, kernel, 6)
+x_star = np.linspace(0.0,50.0,500)
+linreg = LinearRegression(x_vals, y_vals, x_star, kernel, n)
 linreg.param_form()
 linreg.prediction_model()
 

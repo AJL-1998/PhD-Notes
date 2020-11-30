@@ -150,7 +150,11 @@ Let us examine the matrix $X^{\text{T}} X$ in detail. By \cref{posdef}, $X^{\tex
 
 \end{array} \right]
 \end{equation*}
-Inversion of this matrix can be tricky using orthodox methods in practical examples with large data-sets. However, we know enough about this matrix to manipulate it in such a way where this problem is simplified [\ref{ap:2}].
+Inversion of this matrix can be tricky using orthodox methods in practical examples with large data-sets. However, we know enough about this matrix to manipulate it in such a way where this problem is simplified [\ref{ap:2}]. We can then test our parameters on some set of test points, say $\mathbf{x}^{*}$ then
+\begin{equation}
+\hat{\mathbf{y}} = \hat{X} \hat{\boldsymbol\beta} = \hat{X} (X^{\text{T}} X)^{-1} X^{\text{T}}\mathbf{y} = H\textbf{y},
+\end{equation}
+where $\hat{X}$ is the corresponding $X$ for the test points $\mathbf{x}^{*}$. We call the matrix $H$ the hat matrix of our model, since it puts a hat on $\mathbf{y}$
 
 
 \appendix
