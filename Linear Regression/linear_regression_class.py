@@ -1,6 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+"""
+A simple linear regression class for 1-D output. Will be further extended
+    for 2-D output (i.e. 3-D plot) and improved calls for matrix inversion
+        of positive-definite matrices (Cholesky decomposition method).
+
+A.J.Lee
+"""
+
 class LinearRegression:
     """
     DESCRIPTION
