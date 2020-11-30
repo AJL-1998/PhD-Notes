@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper, twocolumn, conference]{IEEEtran}
+\documentclass[10pt,a4paper, onecolumn, conference]{IEEEtran}
 \author{Adam Lee}
 \title{Multiple Linear Regression}
 \date{November 2020}
@@ -46,7 +46,7 @@ Our definition of linearity yields a significant amount of flexibility for our r
 y = \beta_0 + \beta_1 x_1 + \cdots + \beta_n x_n + \varepsilon,
 \end{equation}
 where $y$ is our response variable and $x_i$ for $i = 1, \ldots, n$ are our regressors. It must be noted the term linear is used here since \cref{eq1} is a linear function of the unknown parameters $\beta_i$. This means we can choose our regressor terms freely. More complex models may allow for a polynomial fit.
-\begin{example}
+\begin{example} \label{ex1}
 Consider the polynomial model
 \begin{equation}
 y = \beta_0 + \beta_1 x + \beta_2 x^2 + \varepsilon.
@@ -154,9 +154,91 @@ Inversion of this matrix can be tricky using orthodox methods in practical examp
 \begin{equation}
 \hat{\mathbf{y}} = \hat{X} \hat{\boldsymbol\beta} = \hat{X} (X^{\text{T}} X)^{-1} X^{\text{T}}\mathbf{y} = H\textbf{y},
 \end{equation}
-where $\hat{X}$ is the corresponding $X$ for the test points $\mathbf{x}^{*}$. We call the matrix $H$ the hat matrix of our model, since it puts a hat on $\mathbf{y}$
+where $\hat{X}$ is the corresponding $X$ for the test points $\mathbf{x}^{*}$. We call the matrix $H$ the hat matrix of our model, since it puts a hat on $\mathbf{y}$. 
+\section{Basis Functions}
+Our generic example considers the construction of an $n+1$ dimension hyperplane, which we can visualise in up to three dimensions as in \cref{fig1}. Let us instead consider examples more akin to~\cref{ex1} where our model takes the form
+\begin{equation}
+y = \sum_{i = 0}^{n} \beta_n \phi_n(x) + \epsilon,
+\end{equation}
+where $\beta_i$ are our unknown parameters, and $\phi_i$ are basis functions. Then we can assume matrix notation for our data set $\varkappa$
+\begin{equation}
+\mathbf{y} = X \boldsymbol\beta + \boldsymbol\varepsilon.
+\end{equation}
+where
+\begin{equation}
+\mathbf{y} = \left( \begin{matrix} y_0 \\ y_1 \\ \vdots \\ y_k \end{matrix} \right),
+\end{equation}
+\begin{equation}
+X = \left( \begin{matrix}
+\phi_0(x_0) & \phi_1(x_0) & \cdots & \phi_n(x_0) \\
+\phi_0(x_1) & \phi_1(x_1) & \cdots & \phi_n(x_1) \\
+\vdots & \vdots & \ddots & \vdots \\
+\phi_0(x_k) & \phi_1(x_k) & \cdots & \phi_n(x_k) \\
+\end{matrix} \right),
+\end{equation}
+\begin{equation}
+\boldsymbol\beta = \left( \begin{matrix} \beta_0 \\ \beta_1 \\ \vdots \\ \beta_n \end{matrix} \right),
+\end{equation}
+and
+\begin{equation}
+\boldsymbol\varepsilon = \left( \begin{matrix} \varepsilon_0 \\ \varepsilon_1 \\ \vdots \\ \varepsilon_k \end{matrix} \right).
+\end{equation}
+Then our solution for our parameters is nothing else than
+\begin{equation}
+\hat{\boldsymbol\beta} = (X^{\text{T}} X)^{-1} X^{\text{T}}\mathbf{y}.
+\end{equation}
+\subsection{Basis Function Examples}
+Our basis functions can assume any form such that each function $\phi_i$ is real-valued and scalar. Two more popular basis functions are polynomial and Gaussian radial basis functions.
+\begin{example}[Polynomial Regression]
+Polynomial regression uses basis functions
+\begin{equation}
+\boldsymbol\phi = \left[ \begin{matrix} 1 & x & x^2 & \cdots & x^n  \end{matrix} \right],
+\end{equation}
+then our matrix $X$ would become
+\begin{equation}
+X = \left( \begin{matrix}
+1 & x_0 & \cdots & x_0^n \\
+1 & x_1 & \cdots & x_1^n \\
+\vdots & \vdots & \ddots & \vdots \\
+1 & x_k & \cdots & x_k^n \\
+\end{matrix} \right).
+\end{equation}
+Restricting our basis functions to $\boldsymbol\phi = \left[ \begin{matrix} 1 & x \end{matrix} \right]$ gives us simple linear regression.
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.5\textwidth]{polyBF_example}
+\caption{Example of polynomial regression}
+\label{fig2}
+\end{figure}
+\hrule
+\vspace{2mm}
+\end{example}
+\begin{example}[Gaussian Radial Basis Functions]
+Let us now consider Gaussian radial basis functions
+\begin{equation}
+\phi_i(x) = e^{-\lambda^{2} ( x - \mu_i ) ^{2} }
+\end{equation}
+where $\lambda$ is some coefficient representing the variance of our basis functions and $\boldsymbol\mu = \left[ \begin{matrix} \mu_1 & \cdots & \mu_n \end{matrix} \right]$ are centres for each Gaussian. Then our predictive function becomes a linear combination of weighted Gaussians where our parameters $\lambda$ and $\mu_i$ determine the smoothness of this function on our test interval. There arises the problem of under or over-fitting our data should we include poor hyper-parameters or attempt to fit too many/few Gaussians to our data.
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.5\textwidth]{GRBF_example}
+\caption{Example of linear regression using Gaussian radial basis functions}
+\label{fig2}
+\end{figure}
+\end{example}
 
 
+
+
+
+
+
+
+
+
+
+
+\pagebreak
 \appendix
 \section{Linear Algebra Proofs}
 \begin{thm} \label{posdef}

@@ -3,10 +3,7 @@ import matplotlib.pyplot as plt
 
 """
 A simple linear regression class for 1-D output. Will be further extended
-    for 2-D output (i.e. 3-D plot) and improved calls for matrix inversion
-        of positive-definite matrices (Cholesky decomposition method).
-
-A.J.Lee
+    for 2-D output (i.e. 3-D plot).
 """
 
 class LinearRegression:
@@ -25,7 +22,8 @@ class LinearRegression:
     
     METHODS
     ------------
-        param_form: returns the values of parameters theta
+        param_form: returns the values of parameters theta, uses Cholesky
+                        decomposition
         prediction_model: returns the values y_star
     
     
@@ -76,17 +74,15 @@ class LinearRegression:
         self.y_star = self.X_star @ self.theta
 
 def kernel(x):
-    centres = np.linspace(0.0, 50.0, 20)
-    n = len(centres)
-    return np.array([np.exp(-0.5*(x - centres[i]) ** 2) for i in range(n)])
+    return np.array([x ** i for i in range(4)])
 
-n = len(np.linspace(0.0, 50.0, 20))
-var = 10000
-x_vals = np.random.uniform(0.0,50,200)
+n = 4
+var = 1000
+x_vals = np.random.uniform(0.0,100,200)
 y_vals = 2 + x_vals + x_vals ** 2 - 0.01*x_vals ** 3
 epsilon = np.sqrt(var)*np.random.normal(size = 200)
 y_vals = y_vals + epsilon
-x_star = np.linspace(0.0,50.0,500)
+x_star = np.linspace(0.0,100.0,500)
 linreg = LinearRegression(x_vals, y_vals, x_star, kernel, n)
 linreg.param_form()
 linreg.prediction_model()
@@ -94,4 +90,4 @@ linreg.prediction_model()
 plt.figure()
 plt.scatter(x_vals, y_vals, marker = '.')
 plt.plot(x_star, linreg.y_star, color = 'red')
-plt.show
+plt.savefig('polyBF_example.pdf')
