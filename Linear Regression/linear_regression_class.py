@@ -78,12 +78,15 @@ class LinearRegression:
         self.y_star = self.X_star @ self.theta
 
 def kernel(x):
-    return np.array([x ** i for i in range(5)])
+    return np.array([x ** i for i in range(6)])
 
-x_vals = np.random.uniform(0.0,10.0,20)
-y_vals = np.sin(0.5 * x_vals)
-x_star = np.linspace(0.0,10.0,50)
-linreg = LinearRegression(x_vals, y_vals, x_star, kernel, 5)
+var = 10000
+x_vals = np.random.uniform(0.0,100.0,200)
+y_vals = 2 + x_vals + x_vals ** 2 - 0.01*x_vals ** 3
+epsilon = np.sqrt(var)*np.random.normal(size = 200)
+y_vals = y_vals + epsilon
+x_star = np.linspace(0.0,100.0,500)
+linreg = LinearRegression(x_vals, y_vals, x_star, kernel, 6)
 linreg.param_form()
 linreg.prediction_model()
 
