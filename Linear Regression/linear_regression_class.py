@@ -25,6 +25,7 @@ class LinearRegression:
     
     METHODS
     ------------
+        param_form: returns the values of parameters theta
         prediction_model: returns the values y_star
     
     
@@ -40,11 +41,53 @@ class LinearRegression:
         self.X = phi(x_vals[0])
         for i in range(1,self.N):
             self.X = np.vstack((self.X,phi(x_vals[i])))
-        self.H = np.linalg.inv( np.copy(self.X).T @ np.copy(self.X) )
-        self.theta = self.H @ self.X.T @ np.vstack(self.y_vals)
+        '''self.H = np.linalg.inv( np.copy(self.X).T @ np.copy(self.X) )
+        self.theta = self.H @ self.X.T @ np.vstack(self.y_vals)'''
+        
+    def param_form(self):
+        def Chol(A):
+            n = len(A)
+            L = np.zeros((n,n))
+            for k in range(n):
+                L[k,k] = np.sqrt(A[k,k] - sum(L[k,j] ** 2 for j in range(k)))
+                for i in range(k,n):
+                    L[i,k] = (1 / L[k,k]) * (A[i,k] - sum(L[i,j]*L[k,j] for j in range(i)))
+            return L
+
+        def LowerInv(L):
+            n = len(L)
+            X = np.zeros((n,n))
+            for i in range(n):
+                X[i,i] = 1/L[i,i]
+                for j in range(i+1,n):
+                    X[j,i] = -(1 / L[j,j]) * sum(L[j,k] * X[k,i] for k in range(0,j))
+            return X
+        
+        A = np.copy(self.X)
+        A = A.T @ A
+        L = Chol(A)
+        Linv = LowerInv(L)
+        Ainv = Linv.T @ Linv
+        self.theta = Ainv @ self.X.T @ np.vstack(self.y_vals)
+        
         
     def prediction_model(self):
         self.X_star = self.phi(self.x_star[0])
         for i in range(1,self.N_star):
             self.X_star = np.vstack((self.X_star,self.phi(self.x_star[i])))
         self.y_star = self.X_star @ self.theta
+
+def kernel(x):
+    return np.array([x ** i for i in range(5)])
+
+x_vals = np.random.uniform(0.0,10.0,20)
+y_vals = np.sin(0.5 * x_vals)
+x_star = np.linspace(0.0,10.0,50)
+linreg = LinearRegression(x_vals, y_vals, x_star, kernel, 5)
+linreg.param_form()
+linreg.prediction_model()
+
+plt.figure()
+plt.scatter(x_vals, y_vals, marker = '.')
+plt.plot(x_star, linreg.y_star, color = 'red')
+plt.show

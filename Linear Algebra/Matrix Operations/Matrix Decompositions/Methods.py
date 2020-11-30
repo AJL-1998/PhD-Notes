@@ -200,3 +200,9 @@ def HouseholderAlg(X):
                 X[i,j] = 0
         
     return X
+
+x = 10*np.random.rand(4,4)
+A = x.T @ x
+L = Chol(A)
+Linv = LowerInv(L)
+Ainv = Linv.T @ Linv
