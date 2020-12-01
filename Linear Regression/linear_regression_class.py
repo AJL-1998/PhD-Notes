@@ -36,19 +36,13 @@ class LinearRegression:
         self.x_star = x_star
         self.phi = phi
         self.D = D
-        self.X = phi(x_vals[0])
+        self.X = phi(x_vals[0], self.D)
         for i in range(1,self.N):
-            self.X = np.vstack((self.X,phi(x_vals[i])))
+            self.X = np.vstack((self.X,phi(x_vals[i], self.D)))
+        self.A = np.copy(self.X)
+        self.A = self.A.T @ self.A
         
     def param_form(self):
-        def Chol(A):
-            n = len(A)
-            L = np.zeros((n,n))
-            for k in range(n):
-                L[k,k] = np.sqrt(A[k,k] - sum(L[k,j] ** 2 for j in range(k)))
-                for i in range(k,n):
-                    L[i,k] = (1 / L[k,k]) * (A[i,k] - sum(L[i,j]*L[k,j] for j in range(i)))
-            return L
 
         def LowerInv(L):
             n = len(L)
@@ -59,30 +53,30 @@ class LinearRegression:
                     X[j,i] = -(1 / L[j,j]) * sum(L[j,k] * X[k,i] for k in range(0,j))
             return X
         
-        A = np.copy(self.X)
-        A = A.T @ A
-        L = Chol(A)
+        
+        A = np.copy(self.A)
+        L = np.linalg.cholesky(A)
         Linv = LowerInv(L)
         Ainv = Linv.T @ Linv
         self.theta = Ainv @ self.X.T @ np.vstack(self.y_vals)
         
         
     def prediction_model(self):
-        self.X_star = self.phi(self.x_star[0])
+        self.X_star = self.phi(self.x_star[0], self.D)
         for i in range(1,self.N_star):
-            self.X_star = np.vstack((self.X_star,self.phi(self.x_star[i])))
+            self.X_star = np.vstack((self.X_star,self.phi(self.x_star[i], self.D)))
         self.y_star = self.X_star @ self.theta
 
-def kernel(x):
-    return np.array([x ** i for i in range(4)])
+def kernel(x, d):
+    return np.array([x ** i for i in range(d)])
 
 n = 4
-var = 1000
-x_vals = np.random.uniform(0.0,100,200)
-y_vals = 2 + x_vals + x_vals ** 2 - 0.01*x_vals ** 3
-epsilon = np.sqrt(var)*np.random.normal(size = 200)
+var = 10000
+x_vals = np.random.uniform(0.0,50.0,50)
+y_vals = 2 + x_vals - 4*x_vals ** 2 + 0.1* x_vals ** 3
+epsilon = np.sqrt(var)*np.random.normal(size = 50)
 y_vals = y_vals + epsilon
-x_star = np.linspace(0.0,100.0,500)
+x_star = np.linspace(0.0,50.0,500)
 linreg = LinearRegression(x_vals, y_vals, x_star, kernel, n)
 linreg.param_form()
 linreg.prediction_model()
@@ -90,4 +84,6 @@ linreg.prediction_model()
 plt.figure()
 plt.scatter(x_vals, y_vals, marker = '.')
 plt.plot(x_star, linreg.y_star, color = 'red')
-plt.savefig('polyBF_example.pdf')
+plt.show()
+
+print(linreg.theta)
