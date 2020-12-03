@@ -46,6 +46,7 @@ class nummatrix:
             shape += ' square'
         self.shape = shape
         self.A = np.zeros((nd[0],nd[1]))
+        self.nd = nd
         if len(body) < nd[0]*nd[1]:
             a = [0 for i in range(nd[0]*nd[1] - len(body))]
             body.extend(a)
@@ -54,10 +55,6 @@ class nummatrix:
             for j in range(nd[1]):
                 self.A[i,j] = body[j + nd[1]*i]
         
-                
-    def __inv__(self):
-        C = np.linalg.inv(self.A)
-        return C
                 
     def HouseholderAlg(self):
         """
@@ -186,3 +183,24 @@ class nummatrix:
         self.P = P
         self.L = L
         self.U = U
+        
+    def LowerInv(self):
+        """    
+        Parameters
+        ----------
+        L : LOWER TRIANGULAR MATRIX.
+    
+        Returns
+        -------
+        X : INVERSE MATRIX L ** -1.
+    
+        """
+        L = np.copy(self.L)
+        n = len(L)
+        X = np.zeros((n,n))
+        for i in range(n):
+            X[i,i] = 1/L[i,i]
+            for j in range(i+1,n):
+                X[j,i] = -(1 / L[j,j]) * sum(L[j,k] * X[k,i] for k in range(0,j))
+        self.L_inv = X
+        
