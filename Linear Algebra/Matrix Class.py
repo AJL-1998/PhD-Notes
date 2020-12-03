@@ -1,5 +1,6 @@
 import numpy as np
-import math
+from scipy.linalg import lu
+import timeit
 
 class nummatrix:
     
@@ -41,9 +42,17 @@ class nummatrix:
     
     
     
-    def __init__(self, nd = [0,0], body = [], shape = 'unknown'):
+    def __init__(self, nd = [0,0], body = [], shape = ''):
         if nd[0] == nd[1] and 'square' not in shape:
-            shape += ' square'
+            if shape == '':
+                shape = 'square'
+            else:
+                shape += ', square'
+        else:
+            if shape == '':
+                shape = str(nd[0]) + ' x ' + str(nd[1])
+            else:
+                shape += ', ' + str(nd[0]) + ' x ' + str(nd[1])
         self.shape = shape
         self.A = np.zeros((nd[0],nd[1]))
         self.nd = nd
@@ -138,7 +147,7 @@ class nummatrix:
             n = len(X)
             L = np.zeros((n,n))
             for k in range(n):
-                L[k,k] = math.sqrt(X[k,k] - sum(L[k,j] ** 2 for j in range(k)))
+                L[k,k] = np.sqrt(X[k,k] - sum(L[k,j] ** 2 for j in range(k)))
                 for i in range(k,n):
                     L[i,k] = (1 / L[k,k]) * (X[i,k] - sum(L[i,j]*L[k,j] for j in range(i)))
             self.P = np.identity(self.nd[0])
@@ -188,11 +197,11 @@ class nummatrix:
         """    
         Parameters
         ----------
-        L : LOWER TRIANGULAR MATRIX.
+        self.L : LOWER TRIANGULAR FACTOR OF self.A
     
         Returns
         -------
-        X : INVERSE MATRIX L ** -1.
+        X : INVERSE MATRIX self.L ** -1.
     
         """
         L = np.copy(self.L)
