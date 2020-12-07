@@ -102,7 +102,7 @@ class nummatrix:
         """
         assert 'square' in self.shape, 'Matrix not square'
         
-
+        X = np.copy(self.A)
         def matmul(M, X, a, b):
             N = len(M)
             MX = np.zeros((N,N))
@@ -293,14 +293,6 @@ class nummatrix:
         self.det = det
         
 
-n = 4
-x = 10*np.random.rand(n,n)
-x = x.T @ x
-x = np.hstack(x).tolist()
-x = nummatrix(nd = [n,n], body = x, shape = 'positive-definite')
-x.Chol_det()
-print(x.det)
-print(np.linalg.det(x.A))
 
 
 
