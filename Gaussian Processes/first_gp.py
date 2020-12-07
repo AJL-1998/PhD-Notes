@@ -18,7 +18,7 @@ def kernel(X1, X2, l=1.0, sigma_f=2.0):
     return sigma_f**2 * np.exp(-0.5 / l**2 * sqdist)
 
 z = np.array([])
-for i in range(1,24):
+for i in range(1,10):
     z_v = np.random.uniform(-12, 12)
     z   = np.append(z, z_v)
     x   = np.vstack(z)
@@ -36,13 +36,16 @@ for i in range(1,24):
     # Equation (8)
     cov_s = K_ss - K_s.T.dot(K_i).dot(K_s)
     N = np.random.multivariate_normal(mu_s.ravel(), cov_s)
+    cov_p = mu_s + cov_s
+    cov_m = mu_s - cov_s
 
     x_true = np.linspace(-12,12,500)
     y_true = 0.1*x_true*np.sin(x_true)
     plt.figure()
-    plt.plot(x_s, mu_s + cov_s / 2, color = 'blue')
-    plt.plot(x_s, mu_s - cov_s / 2, color = 'blue')
+    plt.plot(x_s, cov_p, color = 'blue')
+    plt.plot(x_s, cov_m, color = 'blue')
     plt.plot(x_s, mu_s, color = 'black')
     plt.plot(x_true, y_true, color = 'red', linestyle = 'dashed')
     plt.scatter(x, y, marker = 'x', color ='red')
     plt.show()
+    

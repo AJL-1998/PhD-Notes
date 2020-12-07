@@ -1,6 +1,5 @@
 import numpy as np
 from scipy.linalg import lu
-import timeit
 
 class nummatrix:
     
@@ -200,10 +199,11 @@ class nummatrix:
         self.L : LOWER TRIANGULAR FACTOR OF self.A
     
         Returns
-        -------
-        X : INVERSE MATRIX self.L ** -1.
+        ----------
+        self.L_inv : INVERSE MATRIX self.L ** -1.
     
         """
+        
         L = np.copy(self.L)
         n = len(L)
         X = np.zeros((n,n))
@@ -212,4 +212,77 @@ class nummatrix:
             for j in range(i+1,n):
                 X[j,i] = -(1 / L[j,j]) * sum(L[j,k] * X[k,i] for k in range(0,j))
         self.L_inv = X
+        
+    def Chol_mul(self):
+        """
+        Parameters
+        ----------
+        self.L_inv: THE INVERSE OF L - THE LOWER TRIANGULAR FACTOR OF self.A
+
+        Returns
+        -------
+        self.
+
+        """
+        n = np.copy(self.nd[0])
+        L_inv = np.copy(self.L_inv)
+        X = np.zeros((n,n))
+        for i in range(n):
+            for j in range(i,n):
+                for k in range(j,n):
+                    if i == j:
+                        X[i,j] += L_inv[k,i]*L_inv[k,j]/2
+                    else:
+                        X[i,j] += L_inv[k,i]*L_inv[k,j]
+        self.A_inv = X.T + X
+        
+    def Chol_inv(self):
+        """ 
+        Parameters
+        ----------
+        self.A : POSITIVE-DEFINITE, SQUARE MATRIX
+        
+        Returns
+        ----------
+        self.A_inv : INVERSE MATRIX A_inv OF A, USING CHOLESKY ARITHMETIC
+        
+        """
+        if 'positive-definite' in self.shape:
+            self.CholD()
+            self.LowerInv()
+            self.Chol_mul()
+        else:
+            print( 'Matrix is not positive-definite' )
+
+n = 4
+x = 10*np.random.rand(n,n)
+x = x.T @ x
+x = np.hstack(x).tolist()
+x = nummatrix(nd = [n,n], body = x, shape = 'positive-definite, square')
+x.Chol_inv()
+X = np.copy(x.A)
+X_inv = np.linalg.inv(X)
+print(np.linalg.det(X_inv - x.A_inv))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
