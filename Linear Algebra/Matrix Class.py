@@ -28,6 +28,15 @@ class nummatrix:
         CholD          : The Cholesky decomposition, performed on
                             pos-def matrices ONLY. Assigns self.P, self.L, self.U
         PLUfac         : The PLU factorisation for a square matrix. Assigns self.P, self.L, self.U
+        
+        LowerInv       : Computes the inverse of a triangular matrix (assumed lower, but transpositions allow for upper)
+        
+        Chol_mul       : Computes the inverse of A = LL.T given L ** (-1)
+        
+        Chol_inv       : Overhead method using CholD, LowerInv, Chol_mul to compute the inverse A ** (-1)
+                           of A = LL.T
+        Chol_det       : Overhead method using CholD to compute the determinant of A using Cholesky
+                           arithmetic 
                             
     NOTES
     ------------
@@ -36,6 +45,20 @@ class nummatrix:
             the best way to do so would be to follow this code:
                 X = np.hstack(X).tolist()
                 Xclass = nummatrix(nd = [a,b], body = X, shape = ... )
+                
+    MATRIX SHAPES
+    ------------
+        - n x m
+        - square
+        - positive-definite
+        - diagonal
+        - (upper/lower) triangular
+        - (upper/lower) hessenberg
+        - symmetric
+        - skew-symmetric
+        - orthogonal
+        - involutory
+        
     
     """
     
@@ -77,10 +100,7 @@ class nummatrix:
         X : UPPER HESSENBERG FORM OF X.
 
         """
-        if 'square' in self.shape:
-            X = np.copy(self.A)
-        else:
-            return 'Matrix not square'
+        assert 'square' in self.shape, 'Matrix not square'
         
 
         def matmul(M, X, a, b):
@@ -247,22 +267,40 @@ class nummatrix:
         self.A_inv : INVERSE MATRIX A_inv OF A, USING CHOLESKY ARITHMETIC
         
         """
-        if 'positive-definite' in self.shape:
-            self.CholD()
-            self.LowerInv()
-            self.Chol_mul()
-        else:
-            print( 'Matrix is not positive-definite' )
+        assert 'positive-definite, square' in self.shape, 'Matrix not positive-definite square'
+        
+        self.CholD()
+        self.LowerInv()
+        self.Chol_mul()
+        
+    def Chol_det(self):
+        """ 
+        Parameters
+        ----------
+        self.A : POSITIVE-DEFINITE, SQUARE MATRIX
+        
+        Returns
+        ----------
+        self.det : DETERMINANT OF A USING CHOLESKY ARITHMETIC
+        
+        """
+        assert 'positive-definite, square' in self.shape, 'Matrix not positive-definite square' 
+        self.CholD()
+        L = np.copy(self.L)
+        det = 1
+        for i in range(self.nd[0]):
+            det = det*(L[i,i] ** 2)
+        self.det = det
+        
 
 n = 4
 x = 10*np.random.rand(n,n)
 x = x.T @ x
 x = np.hstack(x).tolist()
-x = nummatrix(nd = [n,n], body = x, shape = 'positive-definite, square')
-x.Chol_inv()
-X = np.copy(x.A)
-X_inv = np.linalg.inv(X)
-print(np.linalg.det(X_inv - x.A_inv))
+x = nummatrix(nd = [n,n], body = x, shape = 'positive-definite')
+x.Chol_det()
+print(x.det)
+print(np.linalg.det(x.A))
 
 
 
