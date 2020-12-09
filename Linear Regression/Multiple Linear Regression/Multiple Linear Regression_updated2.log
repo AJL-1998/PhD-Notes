@@ -1,7 +1,7 @@
 This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.16)  9 DEC 2020 17:43
 entering extended mode
-**"./Multiple Linear Regression.tex"
-("Multiple Linear Regression.tex"
+**"./Multiple Linear Regression_updated2.tex"
+("Multiple Linear Regression_updated2.tex"
 LaTeX2e <2020-10-01> patch level 2
 L3 programming layer <2020-10-27> xparse <2020-03-03>
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/ieeetran\IEEEtran.cls
@@ -933,8 +933,9 @@ tex.def
 File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
 \l__kernel_color_stack_int=\count323
 \l__pdf_internal_box=\box65
-) ("Multiple Linear Regression.aux")
-\openout1 = `"Multiple Linear Regression.aux"'.
+)
+No file "Multiple Linear Regression_updated2".aux.
+\openout1 = `"Multiple Linear Regression_updated2.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
 LaTeX Font Info:    ... okay on input line 40.
@@ -952,7 +953,6 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
 LaTeX Font Info:    ... okay on input line 40.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
 LaTeX Font Info:    ... okay on input line 40.
-
 -- Lines per column: 56 (exact).
 
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
@@ -998,18 +998,15 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 40.
 LaTeX Info: Redefining \pageref on input line 40.
 LaTeX Info: Redefining \nameref on input line 40.
- ("Multiple Linear Regression.out")
-("Multiple Linear Regression.out")
 \@outlinefile=\write4
-\openout4 = `"Multiple Linear Regression.out"'.
+\openout4 = `"Multiple Linear Regression_updated2.out"'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
  [1{C:/Users/adayr/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
 LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
 
-
-(C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+ (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
@@ -1018,25 +1015,67 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<f4.pdf, id=42, 433.62pt x 289.08pt>
+
+LaTeX Warning: Reference `eq1' on page 1 undefined on input line 48.
+
+
+LaTeX Warning: Reference `ex1' on page 1 undefined on input line 48.
+
+
+LaTeX Warning: Reference `fig1' on page 2 undefined on input line 58.
+
+
+LaTeX Warning: Reference `fig1' on page 2 undefined on input line 73.
+
+
+LaTeX Warning: Reference `fig1' on page 2 undefined on input line 81.
+
+<f4.pdf, id=13, 433.62pt x 289.08pt>
 File: f4.pdf Graphic file (type pdf)
 <use f4.pdf>
 Package pdftex.def Info: f4.pdf  used on input line 84.
 (pdftex.def)             Requested size: 258.0pt x 172.00693pt.
 
-[2] [3 <./f4.pdf>] [4]
-<polyBF_example.pdf, id=129, 433.62pt x 289.08pt>
+LaTeX Warning: Reference `eq2' on page 1 undefined on input line 85.
+
+
+LaTeX Warning: Reference `eq2' on page 1 undefined on input line 85.
+
+[2] [3 <./f4.pdf>]
+
+LaTeX Warning: Reference `posdef' on page 1 undefined on input line 142.
+
+
+LaTeX Warning: Reference `ap:2' on page 4 undefined on input line 152.
+
+
+LaTeX Warning: Reference `fig1' on page 1 undefined on input line 158.
+
+
+LaTeX Warning: Reference `ex1' on page 1 undefined on input line 158.
+
+[4]
+
+LaTeX Warning: Reference `fig2' on page 1 undefined on input line 205.
+
+<polyBF_example.pdf, id=95, 433.62pt x 289.08pt>
 File: polyBF_example.pdf Graphic file (type pdf)
 <use polyBF_example.pdf>
 Package pdftex.def Info: polyBF_example.pdf  used on input line 216.
 (pdftex.def)             Requested size: 412.80157pt x 275.2155pt.
- [5 <./polyBF_example.pdf>]
-<f5.pdf, id=158, 433.62pt x 289.08pt>
+[5 <./polyBF_example.pdf>]
+
+LaTeX Warning: Reference `fig3' on page 1 undefined on input line 230.
+
+
+LaTeX Warning: Reference `fig2' on page 1 undefined on input line 230.
+
+<f5.pdf, id=123, 433.62pt x 289.08pt>
 File: f5.pdf Graphic file (type pdf)
 <use f5.pdf>
 Package pdftex.def Info: f5.pdf  used on input line 241.
 (pdftex.def)             Requested size: 412.80157pt x 275.2155pt.
- [6 <./f5.pdf>]
+[6 <./f5.pdf>]
 ** WARNING: Ignoring useless \section in Appendix (line 260).
 
 ** Conference Paper **
@@ -1049,19 +1088,32 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[7] ("Multiple Linear Regression.aux")
-Package rerunfilecheck Info: File `"Multiple Linear Regression".out' has not ch
-anged.
-(rerunfilecheck)             Checksum: F849D41A753BB7E2B0B43E1B395C45AB;332.
+[7] ("Multiple Linear Regression_updated2.aux")
+
+Package rerunfilecheck Warning: File `"Multiple Linear Regression_updated2".out
+' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `"Multiple Linear Regression_updated
+2".out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  F849D41A753BB7E2B0B43E1B395C45AB;332.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 31830 strings out of 479799
- 768371 string characters out of 2869722
- 1116440 words of memory out of 3000000
- 48219 multiletter control sequences out of 15000+200000
+ 31817 strings out of 479799
+ 767946 string characters out of 2869722
+ 1115635 words of memory out of 3000000
+ 48212 multiletter control sequences out of 15000+200000
  648109 words of font info for 154 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,12n,109p,800b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 99i,12n,109p,818b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:
 /Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx1
 0.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
@@ -1084,9 +1136,10 @@ rograms/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/adayr/A
 ppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/adayr/A
 ppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/adayr/A
 ppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "Multiple Linear Regression.pdf" (7 pages, 244637 bytes).
+Output written on "Multiple Linear Regression_updated2.pdf" (7 pages, 241352 by
+tes).
 PDF statistics:
- 273 PDF objects out of 1000 (max. 8388607)
+ 240 PDF objects out of 1000 (max. 8388607)
  64 named destinations out of 1000 (max. 500000)
- 76 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

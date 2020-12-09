@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 n = 100
-var = 10000
+var = 1000
 epsilon = np.sqrt(var)*np.random.normal(size = (n,1))
 
 def model_function(x):
