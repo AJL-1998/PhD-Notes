@@ -21,13 +21,11 @@ class nummatrix:
         
     METHODS
     ------------
-        __inv__        : numpy's basic inverse method, only use
-                                if shape is unknown square
         HouseholderAlg : Householder's method for reduction to Upper
                                 Hessenberg form
         CholD          : The Cholesky decomposition, performed on
                             pos-def matrices ONLY. Assigns self.P, self.L, self.U
-        PLUfac         : The PLU factorisation for a square matrix. Assigns self.P, self.L, self.U
+        PLUfac         : The PLU factorisation for a square matrix. Solution to PA = LU.
         
         LowerInv       : Computes the inverse of a triangular matrix (assumed lower, but transpositions allow for upper)
         
