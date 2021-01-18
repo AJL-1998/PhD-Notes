@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.16)  17 DEC 2020 15:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.16)  14 JAN 2021 15:40
 entering extended mode
 **"./Linear Regression & GPs_2.tex"
 ("Linear Regression & GPs_2.tex"
@@ -1001,8 +1001,27 @@ Package: mathscinet 2002/04/17 v1.05
 \bib@dbfile=\read5
 \alpha@suffix=\count347
 \series@index=\count348
+) (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/mathtools\empheq.sty
+Package: empheq 2017/03/31 v2.15 Emphasizing equations
+\l_EQ_equationtype_int=\count349
+\l_EQ_alignmentmode_int=\count350
+\l_EQ_totalwidth_dim=\dimen411
+\l_EQ_displaywidth_dim=\dimen412
+\l_EQ_temp_linewidth_dim=\dimen413
+\l_EQ_linewidth_dim=\dimen414
+\EmphEqdelimitershortfall=\dimen415
+\EmphEqdelimiterfactor=\count351
+\g_EQ_toptag_height_dim=\dimen416
+\g_EQ_bottomtag_depth_dim=\dimen417
+\g_EQ_toprow_height_dim=\dimen418
+\g_EQ_bottomrow_depth_dim=\dimen419
+\g_EQ_widesttag_dim=\dimen420
+\EQ_mathdisplay_box=\box86
+\EQ_tag_box=\box87
+\g_EQ_temprow_int=\count352
 ) (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2020-05-15 v7.00e Hypertext links for LaTeX
+
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 )
@@ -1046,9 +1065,9 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
-\@linkdim=\dimen411
-\Hy@linkcounter=\count349
-\Hy@pagecounter=\count350
+\@linkdim=\dimen421
+\Hy@linkcounter=\count353
+\Hy@pagecounter=\count354
  (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2020-05-15 v7.00e Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -1060,7 +1079,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count351
+\Hy@SavedSpaceFactor=\count355
 Package hyperref Info: Option `colorlinks' set `true' on input line 4338.
 Package hyperref Info: Hyper figures OFF on input line 4464.
 Package hyperref Info: Link nesting OFF on input line 4469.
@@ -1069,9 +1088,9 @@ Package hyperref Info: Plain pages OFF on input line 4479.
 Package hyperref Info: Backreferencing OFF on input line 4484.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4717.
-\c@Hy@tempcnt=\count352
+\c@Hy@tempcnt=\count356
 LaTeX Info: Redefining \url on input line 5076.
-\XeTeXLinkMargin=\dimen412
+\XeTeXLinkMargin=\dimen422
  (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
@@ -1080,9 +1099,9 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count353
-\Field@Width=\dimen413
-\Fld@charsize=\dimen414
+\Fld@menulength=\count357
+\Field@Width=\dimen423
+\Fld@charsize=\dimen424
 Package hyperref Info: Hyper figures OFF on input line 6347.
 Package hyperref Info: Link nesting OFF on input line 6352.
 Package hyperref Info: Hyper index ON on input line 6355.
@@ -1098,9 +1117,9 @@ Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
 ge
 with kernel methods
 )
-\Hy@abspage=\count354
-\c@Item=\count355
-\c@Hfootnote=\count356
+\Hy@abspage=\count358
+\c@Item=\count359
+\c@Hfootnote=\count360
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
@@ -1111,8 +1130,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
 e
 with kernel methods
 )
-\Fld@listcount=\count357
-\c@bookmark@seq@number=\count358
+\Fld@listcount=\count361
+\c@bookmark@seq@number=\count362
 
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
 echeck.sty
@@ -1153,22 +1172,37 @@ Package: nextpage 2009/09/03 v1.1a additional page commands
 \afterepigraphskip=\skip71
 \epigraphwidth=\skip72
 \epigraphrule=\skip73
+) (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/scalerel\scalerel.sty
+Package: scalerel 2016/12/29 v1.8 Routines for constrained scaling and stretchi
+ng of objects, relative to a reference object or in absolute terms
+
+(C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count363
+)
+\thesrwidth=\skip74
+\thesrheight=\skip75
+\srblobheight=\skip76
+\srblobdepth=\skip77
+\mnxsrwidth=\skip78
+\LMex=\skip79
+\LMpt=\skip80
 ) (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
 Package: caption 2020/10/26 v3.5g Customizing captions (AR)
 
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
 Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
-\captionmargin=\dimen415
-\captionmargin@=\dimen416
-\captionwidth=\dimen417
-\caption@tempdima=\dimen418
-\caption@indent=\dimen419
-\caption@parindent=\dimen420
-\caption@hangindent=\dimen421
+\captionmargin=\dimen425
+\captionmargin@=\dimen426
+\captionwidth=\dimen427
+\caption@tempdima=\dimen428
+\caption@indent=\dimen429
+\caption@parindent=\dimen430
+\caption@hangindent=\dimen431
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count359
-\c@continuedfloat=\count360
+\c@caption@flags=\count364
+\c@continuedfloat=\count365
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
@@ -1180,8 +1214,8 @@ File: tikzlibraryfit.code.tex 2020/10/01 v3.1.6a (3.1.6a)
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z/libraries\tikzlibrarybackgrounds.code.tex
 File: tikzlibrarybackgrounds.code.tex 2020/10/01 v3.1.6a (3.1.6a)
-\pgf@layerbox@background=\box86
-\pgf@layerboxsaved@background=\box87
+\pgf@layerbox@background=\box88
+\pgf@layerboxsaved@background=\box89
 )
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z/libraries\tikzlibrarymatrix.code.tex
@@ -1190,49 +1224,50 @@ File: tikzlibrarymatrix.code.tex 2020/10/01 v3.1.6a (3.1.6a)
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
 aryarrows.meta.code.tex
 File: pgflibraryarrows.meta.code.tex 2020/10/01 v3.1.6a (3.1.6a)
-\pgfarrowinset=\dimen422
-\pgfarrowlength=\dimen423
-\pgfarrowwidth=\dimen424
-\pgfarrowlinewidth=\dimen425
+\pgfarrowinset=\dimen432
+\pgfarrowlength=\dimen433
+\pgfarrowwidth=\dimen434
+\pgfarrowlinewidth=\dimen435
 )
-\c@corollary=\count361
-\c@thm=\count362
+\c@corollary=\count366
+\c@thm=\count367
+\c@definition=\count368
 \@float@every@proc=\toks55
-\c@proc=\count363
-\c@example=\count364
+\c@proc=\count369
+\c@example=\count370
  ("Linear Regression & GPs_2.aux")
 \openout1 = `"Linear Regression & GPs_2.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
 
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count365
-\scratchdimen=\dimen426
-\scratchbox=\box88
-\nofMPsegments=\count366
-\nofMParguments=\count367
+\scratchcounter=\count371
+\scratchdimen=\dimen436
+\scratchbox=\box90
+\nofMPsegments=\count372
+\nofMParguments=\count373
 \everyMPshowfont=\toks56
-\MPscratchCnt=\count368
-\MPscratchDim=\dimen427
-\MPnumerator=\count369
-\makeMPintoPDFobject=\count370
+\MPscratchCnt=\count374
+\MPscratchDim=\dimen437
+\MPnumerator=\count375
+\makeMPintoPDFobject=\count376
 \everyMPtoPDFconversion=\toks57
 )
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
@@ -1241,7 +1276,7 @@ Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 )
-\c@lstlisting=\count371
+\c@lstlisting=\count377
 
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/siunitx\siunitx-abbrevi
 ations.cfg
@@ -1255,9 +1290,9 @@ Dictionary: translator-basic-dictionary, Language: English
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.17} into 
 your preamble.
- on input line 106.
+ on input line 112.
 
-Package hyperref Info: Link coloring ON on input line 106.
+Package hyperref Info: Link coloring ON on input line 112.
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
@@ -1268,32 +1303,32 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 lestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count372
+\c@section@level=\count378
 )
-LaTeX Info: Redefining \ref on input line 106.
-LaTeX Info: Redefining \pageref on input line 106.
-LaTeX Info: Redefining \nameref on input line 106.
+LaTeX Info: Redefining \ref on input line 112.
+LaTeX Info: Redefining \pageref on input line 112.
+LaTeX Info: Redefining \nameref on input line 112.
  ("Linear Regression & GPs_2.out") ("Linear Regression & GPs_2.out")
 \@outlinefile=\write5
 \openout5 = `"Linear Regression & GPs_2.out"'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 106
+LaTeX Font Info:    Trying to load font information for U+msa on input line 112
 .
  (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 106
+LaTeX Font Info:    Trying to load font information for U+msb on input line 112
 .
 
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<logo.png, id=90, 570.13pt x 146.5475pt>
+<logo.png, id=154, 570.13pt x 146.5475pt>
 File: logo.png Graphic file (type png)
 <use logo.png>
-Package pdftex.def Info: logo.png  used on input line 109.
+Package pdftex.def Info: logo.png  used on input line 115.
 (pdftex.def)             Requested size: 100.00015pt x 25.70433pt.
 
 [1
@@ -1307,115 +1342,131 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.133 \section
-              *{Introduction} \label{sec:intro} [1] [2] [3] [4]
-<gaus_graf.pdf, id=183, 722.7pt x 216.81pt>
+l.139 \section
+              *{Introduction} \label{sec:intro} [1] [2] [3] [4] [5] [6]
+<gaus_graf.pdf, id=287, 722.7pt x 216.81pt>
 File: gaus_graf.pdf Graphic file (type pdf)
 <use gaus_graf.pdf>
-Package pdftex.def Info: gaus_graf.pdf  used on input line 222.
+Package pdftex.def Info: gaus_graf.pdf  used on input line 302.
 (pdftex.def)             Requested size: 401.9055pt x 120.57246pt.
 
+Overfull \hbox (8.33133pt too wide) in paragraph at lines 308--309
+[]\OT1/cmr/m/n/10 We can gen-er-alise the one-dimension (uni-vari-ate) Gaus-sia
+n dis-tri-bu-tion to higher dimension-
+ []
 
-LaTeX Warning: Reference `sec:mgauss' on page 1 undefined on input line 228.
-
-[5 <./gaus_graf.pdf>] [6] [7] [8] [9] [10]
+[7 <./gaus_graf.pdf>]
+<bivgaus.pdf, id=338, 433.62pt x 289.08pt>
+File: bivgaus.pdf Graphic file (type pdf)
+<use bivgaus.pdf>
+Package pdftex.def Info: bivgaus.pdf  used on input line 327.
+(pdftex.def)             Requested size: 321.52562pt x 214.36134pt.
+ [8 <./bivgaus.pdf>]
+<cond_norm.pdf, id=364, 505.89pt x 505.89pt>
+File: cond_norm.pdf Graphic file (type pdf)
+<use cond_norm.pdf>
+Package pdftex.def Info: cond_norm.pdf  used on input line 353.
+(pdftex.def)             Requested size: 321.52562pt x 321.5299pt.
+ [9 <./cond_norm.pdf>] [10] [11]
+[12]
 
 pdfTeX warning: pdflatex (file ./data_graphmain.pdf): PDF inclusion: found PDF 
 version <1.7>, but at most version <1.5> allowed
-<data_graphmain.pdf, id=294, 844.95674pt x 597.432pt>
+<data_graphmain.pdf, id=451, 844.95674pt x 597.432pt>
 File: data_graphmain.pdf Graphic file (type pdf)
 <use data_graphmain.pdf>
-Package pdftex.def Info: data_graphmain.pdf  used on input line 433.
+Package pdftex.def Info: data_graphmain.pdf  used on input line 484.
 (pdftex.def)             Requested size: 281.33261pt x 198.92168pt.
-<ex1.pdf, id=302, 722.7pt x 722.7pt>
+<ex1.pdf, id=459, 722.7pt x 722.7pt>
 File: ex1.pdf Graphic file (type pdf)
 <use ex1.pdf>
-Package pdftex.def Info: ex1.pdf  used on input line 461.
+Package pdftex.def Info: ex1.pdf  used on input line 512.
 (pdftex.def)             Requested size: 200.95274pt x 200.95412pt.
-[11 <./data_graphmain.pdf>] [12 <./ex1.pdf>] [13]
-<polyBF_example.pdf, id=381, 433.62pt x 289.08pt>
+[13 <./data_graphmain.pdf>] [14 <./ex1.pdf>] [15]
+<polyBF_example.pdf, id=536, 433.62pt x 289.08pt>
 File: polyBF_example.pdf Graphic file (type pdf)
 <use polyBF_example.pdf>
-Package pdftex.def Info: polyBF_example.pdf  used on input line 546.
+Package pdftex.def Info: polyBF_example.pdf  used on input line 597.
 (pdftex.def)             Requested size: 321.52562pt x 214.36134pt.
 
-Overfull \hbox (22.44563pt too wide) in paragraph at lines 557--559
+Overfull \hbox (22.44563pt too wide) in paragraph at lines 608--610
 \OT1/cmr/m/n/10 where $\OML/cmm/m/it/10 $ \OT1/cmr/m/n/10 is some co-ef-fi-cie
 nt rep-re-sent-ing the vari-ance of our ba-sis func-tions and $\OML/cmm/b/it/10
   \OT1/cmr/m/n/10 = [][]$
  []
 
 
-LaTeX Warning: Reference `fig3' on page 1 undefined on input line 560.
+LaTeX Warning: Reference `fig3' on page 1 undefined on input line 611.
 
-<f5.pdf, id=383, 433.62pt x 289.08pt>
+<f5.pdf, id=538, 433.62pt x 289.08pt>
 File: f5.pdf Graphic file (type pdf)
 <use f5.pdf>
-Package pdftex.def Info: f5.pdf  used on input line 571.
+Package pdftex.def Info: f5.pdf  used on input line 622.
 (pdftex.def)             Requested size: 321.52562pt x 214.36134pt.
-[14 <./polyBF_example.pdf>] [15 <./f5.pdf>] [16] [17]
-("Linear Regression & GPs_2.aux")
+[16 <./polyBF_example.pdf>] [17 <./f5.pdf>] [18] [19]
+<sedraws.pdf, id=612, 867.24pt x 578.16pt>
+File: sedraws.pdf Graphic file (type pdf)
+<use sedraws.pdf>
+Package pdftex.def Info: sedraws.pdf  used on input line 697.
+(pdftex.def)             Requested size: 401.9055pt x 267.94177pt.
+ [20 <./sedraws.pdf>]
+[21] [22] [23] ("Linear Regression & GPs_2.aux")
 Package rerunfilecheck Info: File `"Linear Regression & GPs_2".out' has not cha
 nged.
-(rerunfilecheck)             Checksum: 86CE8A50FA3638C3B68B475DC289466F;1494.
+(rerunfilecheck)             Checksum: 0F96FBF368CB8CE38D6B488144EA73F0;2687.
 
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 38231 strings out of 479799
- 900018 string characters out of 2869722
- 1255900 words of memory out of 3000000
- 54418 multiletter control sequences out of 15000+200000
- 556288 words of font info for 105 fonts, out of 3000000 for 9000
+ 38973 strings out of 479799
+ 911049 string characters out of 2869722
+ 1274189 words of memory out of 3000000
+ 55090 multiletter control sequences out of 15000+200000
+ 556637 words of font info for 106 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,13n,111p,1801b,854s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{figure.caption.5} has been referenced but does no
-t exist, replaced by a fixed one
-
- <C:\Users\adayr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm10
-00.pk> <C:\Users\adayr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
-tcrm0600.pk> <C:\Users\adayr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
-pi600\tcrm0700.pk><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmbx10.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/adayr/AppData/Local/Programs/MiKT
-eX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/adayr/AppData/Local/Progr
-ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/adayr/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/adayr/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex7.pfb><C:
-/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi1
-0.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmmi5.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmmi7.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmmi9.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/adayr/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/Users/adayr/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/adayr/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users
-/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C
-:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6
-.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/
-cm/cmr7.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
-sfonts/cm/cmr8.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmr9.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/adayr/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/adayr/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/adayr/App
-Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/
-adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti7.pfb><C
-:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti
-8.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmti9.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/symbols/msam10.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Linear Regression & GPs_2.pdf" (18 pages, 532674 bytes).
+ 108i,13n,111p,1801b,914s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\adayr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
+0600.pk> <C:\Users\adayr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\tcrm0700.pk> <C:\Users\adayr\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\tcrm1000.pk><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmbx10.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/adayr/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/adayr/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx9.pfb><C:/Users/adayr/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/adayr
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Us
+ers/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cme
+x7.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmmi10.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmmi5.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmmi7.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/adayr/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/adayr/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/Users/adayr
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Use
+rs/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb
+><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mr5.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmr6.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmr7.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmr8.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/adayr/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/adayr/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/adayr/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/adayr/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users
+/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+<C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+ti7.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmti8.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmti9.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/symbols/msam10.pfb><C:/Users/adayr/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on "Linear Regression & GPs_2.pdf" (24 pages, 763554 bytes).
 PDF statistics:
- 572 PDF objects out of 1000 (max. 8388607)
- 129 named destinations out of 1000 (max. 500000)
- 211 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 835 PDF objects out of 1000 (max. 8388607)
+ 188 named destinations out of 1000 (max. 500000)
+ 354 words of extra memory for PDF output out of 10000 (max. 10000000)
 

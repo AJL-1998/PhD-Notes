@@ -34,14 +34,18 @@
 \usepackage{pgfplots}
 \usepackage{array}
 \usepackage{amsrefs}
+\usepackage{empheq}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=red]{hyperref}
 \usepackage{cleveref}
 \usepackage{epigraph}
+\usepackage{scalerel}
 \usepackage[font=small,labelfont=bf]{caption}
 \usetikzlibrary{fit, backgrounds, matrix, arrows.meta}
 \newcolumntype{C}{>{$}c<{$}}
 \sisetup{output-exponent-marker=\ensuremath{\mathrm{e}}}
 \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\newcommand{\Beta}{\boldsymbol\beta}
+\newcommand{\BetaT}{\Beta^{\text{T}}}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\var}{var}
 \DeclareMathOperator{\sd}{sd}
@@ -57,6 +61,8 @@
 \newtheorem*{remark}{Remark}
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
 \floatstyle{ruled}
 \newfloat{proc}{thp}{lop}
 \floatname{proc}{Procedure}
@@ -141,6 +147,80 @@ As we mentioned before, we will be taking a probabilistic approach to machine le
 \epigraph{\textit{``Life's most important questions are, for the most part, nothing but probability problems."}}{\textbf{Pierre-Simon Laplace}}
 \subsection{Introduction}
 This report assumes the reader has some knowledge of the underlying theory we intend to use to generate our regression models, however it is convenient for us to review the key aspects of probability theory and linear algebra which will be commonplace in this report. We will also specify frequent notations which will be used throughout.
+\subsection{Linear Algebra}
+It is convenient to introduce some standard notations which shall be followed through the course of this report. Column vectors shall be denoted by lowercase letters (e.g. $\vect{x}$) with row vector transposition of $\vect{x}$ written $\vect{x}^\text{T}$. We shall refer to the $i$-th element of a vector $\vect{x}$ as $\vect{x}_i$. The \textit{norm of a vector} $\vect{x}$ shall be denoted $\Vert \vect{x} \Vert$. We shall refer to the elementary unit vectors as $\textbf{e}_i$ which contain all zero entries apart from the $i$-th entry which is instead one.
+Matrices shall be denoted by capital letters (e.g. $A$) and such a matrix $A$ referred to as being $m \times n$ will have $m$ rows and $n$ columns. A matrix $A$ is said to be square if $m = n$. The $(i,j)$ element of a matrix $A$ shall be denoted as $(a_{ij})$ or simply $a_{ij}$ if the context is clear. When working with a square matrix $A$ we will refer to the determinant of $A$ as either det($A$) or as $\left|A\right|$. If $\text{det}(A)=0$ the matrix $A$ is said to be singular, and otherwise it is non-singular. The $n\times n$ identity matrix will be referred to as $I_\text{n}$. In the case of a non-singular, square matrix $A$ we shall refer to its matrix inverse as $A^{-1}$.
+\subsubsection{Relevant Special Matrices}
+This subsection will introduce any special matrices we are likely to come across in this report and outline their properties.
+\begin{itemize}
+\item \textbf{The zero matrix.} A matrix whose elements are all zero is called a \textit{zero matrix} and is written $0$.
+\item \textbf{Diagonal matrices.} A square matrix $D = (d_{ij})$ is \textit{diagonal} if \[i \neq j\Rightarrow d_{ij} = 0. \]
+That is, the matrix D's off-diagonal entries are all 0. For example:
+\[ D = \left( \begin{matrix}
+						\mbfx & 0 & 0 & 0 & 0\\
+						0 & \mbfx & 0 & 0 & 0\\
+						0 & 0 & \mbfx & 0 & 0\\
+						0 & 0 & 0 & \mbfx & 0\\
+						0 & 0 & 0 & 0 & \mbfx \end{matrix} \right). \]
+(\textit{N.B. in the above matrix, $\mbfx$ represents an entry that may or may not be $0$, following the convention of J. H. Wilkinson~\cite{Wilkinson} and the notation shall be carried forward through this report})
+\item \textbf{(Upper) Triangular matrices}. A square matrix $U = (u_{ij})$ is \textit{upper triangular} if
+\[ i > j \Rightarrow u_{ij} = 0. \]	
+For example:
+\[ U = \left( \begin{matrix}
+						\mbfx & \mbfx & \mbfx & \mbfx & \mbfx\\
+						0 & \mbfx & \mbfx & \mbfx & \mbfx\\
+						0 & 0 & \mbfx & \mbfx & \mbfx\\
+						0 & 0 & 0 & \mbfx & \mbfx\\
+						0 & 0 & 0 & 0 & \mbfx \end{matrix} \right). \]	
+Similarly, a square matrix $L = (l_{ij})$ is \textit{lower triangular} if
+\[ i < j \Rightarrow l_{ij} = 0. \]
+\item \textbf{Symmetric matrices.} A square matrix $S = (s_{ij})$ is symmetric if \[ s_{ij} = s_{ji}~\forall~(i,j).\]
+\item \textbf{Positive-definite matrices.} A square matrix $P$ is positive-definite if the scalar value $\mathbf{z}^{\text{T}} P \mathbf{z}$ is strictly positive for all non-zero column vectors $\textbf{z}$.
+\end{itemize}
+\subsubsection{The Cholesky Decomposition}
+For a positive-definite matrix $A$, there exists a decomposition of $A$ such that
+\begin{equation}
+A = LL^{\text{T}}
+\end{equation}
+where $L$ is lower triangular. This decomposition is known as the Cholesky decomposition. With this, we lay out our first two theorems which will be useful for the discussions on computational efficiency of Gaussian processes.
+
+\begin{thm} \label{posdef}
+For any real matrix $A \in \mathbb{R}^{n \times m}$, the product matrix $A^{\text{T}}A$ is positive definite i.e
+\begin{equation}
+\mathbf{z}^{\text{T}} A^{\text{T}}A \mathbf{z} > 0 ~ \forall ~ \mathbf{z} \in \mathbb{R}^{n}
+\end{equation}
+\end{thm}
+\begin{proof}
+\begin{align} \nonumber
+\mathbf{z}^{\text{T}} A^{\text{T}}A \mathbf{z} & = (A \mathbf{z})^{\text{T}} (A \mathbf{z}) \\
+& = || Az ||^2 > 0.
+\end{align}
+\end{proof}
+\begin{thm} \label{posdef2}
+For a positive-definite matrix $A$, there exists a lower-triangular matrix $U$ such that
+\begin{equation}
+A^{-1} = U U^{T}
+\end{equation}
+\end{thm}
+\begin{proof}
+For positive-definite matrix $A$, we have a Cholesky decomposition such that
+\begin{equation}
+A = L L^{\text{T}},
+\end{equation}
+then we have
+\begin{equation}
+A A^{-1} = L L^{\text{T}} A^{-1} = I,
+\end{equation}
+that is
+\begin{equation}
+A^{-1} = ( L^{\text{T}} )^{-1} L^{-1}.
+\end{equation}
+Since $L$ is lower triangular, if we write $( L^{\text{T}} )^{-1} = U$ then we have
+\begin{equation}
+A^{-1} = U U^{\text{T}},
+\end{equation}
+which is a positive-definite symmetric matrix such that we need only compute the upper-triangular elements of $U U^{\text{T}}$ in order to know all elements of $A^{-1}$.
+\end{proof}
 \subsection{Probability Theory}
 \subsubsection{Discrete Random Variables}
 We use the notation $p(A)$ to denote the probability that event $A$ is true, thus we require that $0 \leq p(A) \leq 1$. We therefore define $p(\bar{A}) = 1 - p(A)$ to be the probability of not $A$. We now define discrete random variables (\textbf{drv} or \textbf{rv}). A random variable is a measurable function $X : \Omega \to \chi$ from a set of outcomes $\Omega$ to a measurable space $\chi$. The discreteness of a random variable indicates it has a countable number of possible values, as opposed to a continuous random variable (\textbf{crv}). We denote the probability that $X = x$ as $p(X = x)$ or simply $p(x)$ if the context is clear. Here, $p()$ is known as the probability mass function (\textbf{pmf}).
@@ -225,83 +305,54 @@ We plot various pdfs and cdfs for Gaussian distribution in~\cref{fig:1} to demon
 \end{figure}
 \hrule
 \vspace{5mm}
-All distributions can be extended to cover higher dimension spaces, while we are only concerned with multivariate Gaussian distributions, we shall cover these in detail in~\cref{sec:mgauss}. Before doing so, we must cover the basic requirements in linear algebra theory for this report.
-\subsection{Linear Algebra}
-Multivariate Gaussian distribution, multiple linear regression and Gaussian processes all require a good basis of understanding for linear algebra, in particular matrix algebra.
+We can generalise the one-dimension (univariate) Gaussian distribution to higher dimension-space. We call this multivariate or joint Gaussian distribution on a continuous random vector $\mathbf{X} = \left[ X_1, X_2, \ldots, X_k \right]^{\text{T}} \in \mathbb{R}^{k}$.
+\subsubsection{Multivariate Gaussian Distribution}
+We say a continuous random variable $\mathbf{X} \in \mathbb{R}^{k}$ is jointly Gaussian if
+\[ \mathbf{X} \sim \mathcal{N}(\boldsymbol\mu, \Sigma), \]
+where $\boldsymbol\mu = \left[ \mathbb{E}(X_1), \ldots, \mathbb{E}(X_k) \right]$ is a mean vector and $\Sigma = \Sigma_{ij} = \mathbb{E}[(X_i - \mu_i)(X_j - \mu_j)]$ is a covariance matrix. The pdf of a $k$-dimension multivariate Gaussian distribution given $\boldsymbol\mu$ and $\Sigma$ is as follows
+\begin{equation}
+\mathcal{N}(\mathbf{X} | \boldsymbol\mu, \Sigma) \triangleq \frac{1}{(2 \pi)^{k/2} |\Sigma|^{1/2}} \exp\left[-\frac{1}{2}(\mathbf{X} - \boldsymbol\mu)^{\text{T}}\Sigma^{-1}(\mathbf{X} - \boldsymbol\mu)\right].
+\end{equation}
+Clearly, this representation is only viable if $\Sigma$ is non-singular, however this is guaranteed by the positive-definiteness of the covariance matrix. The definition of joint Gaussian distribution holds for arbitrarily large $k$, however it is useful to observe the case for $k = 2$, or the bivariate Gaussian distribution.
 
-It is convenient to introduce some standard notations which shall be followed through the course of this report. Column vectors shall be denoted by lowercase letters (e.g. $\vect{x}$) with row vector transposition of $\vect{x}$ written $\vect{x}^\text{T}$. We shall refer to the $i$-th element of a vector $\vect{x}$ as $\vect{x}_i$. The \textit{norm of a vector} $\vect{x}$ shall be denoted $\Vert \vect{x} \Vert$. We shall refer to the elementary unit vectors as $\textbf{e}_i$ which contain all zero entries apart from the $i$-th entry which is instead one.
-Matrices shall be denoted by capital letters (e.g. $A$) and such a matrix $A$ referred to as being $m \times n$ will have $m$ rows and $n$ columns. A matrix $A$ is said to be square if $m = n$. The $(i,j)$ element of a matrix $A$ shall be denoted as $(a_{ij})$ or simply $a_{ij}$ if the context is clear. When working with a square matrix $A$ we will refer to the determinant of $A$ as either det($A$) or as $\left|A\right|$. If $\text{det}(A)=0$ the matrix $A$ is said to be singular, and otherwise it is non-singular. The $n\times n$ identity matrix will be referred to as $I_\text{n}$. In the case of a non-singular, square matrix $A$ we shall refer to its matrix inverse as $A^{-1}$.
-\subsubsection{Relevant Special Matrices}
-This subsection will introduce any special matrices we are likely to come across in this report and outline their properties.
-\begin{itemize}
-\item \textbf{The zero matrix.} A matrix whose elements are all zero is called a \textit{zero matrix} and is written $0$.
-\item \textbf{Diagonal matrices.} A square matrix $D = (d_{ij})$ is \textit{diagonal} if \[i \neq j\Rightarrow d_{ij} = 0. \]
-That is, the matrix D's off-diagonal entries are all 0. For example:
-\[ D = \left( \begin{matrix}
-						\mbfx & 0 & 0 & 0 & 0\\
-						0 & \mbfx & 0 & 0 & 0\\
-						0 & 0 & \mbfx & 0 & 0\\
-						0 & 0 & 0 & \mbfx & 0\\
-						0 & 0 & 0 & 0 & \mbfx \end{matrix} \right). \]
-(\textit{N.B. in the above matrix, $\mbfx$ represents an entry that may or may not be $0$, following the convention of J. H. Wilkinson~\cite{Wilkinson} and the notation shall be carried forward through this report})
-\item \textbf{(Upper) Triangular matrices}. A square matrix $U = (u_{ij})$ is \textit{upper triangular} if
-\[ i > j \Rightarrow u_{ij} = 0. \]	
-For example:
-\[ U = \left( \begin{matrix}
-						\mbfx & \mbfx & \mbfx & \mbfx & \mbfx\\
-						0 & \mbfx & \mbfx & \mbfx & \mbfx\\
-						0 & 0 & \mbfx & \mbfx & \mbfx\\
-						0 & 0 & 0 & \mbfx & \mbfx\\
-						0 & 0 & 0 & 0 & \mbfx \end{matrix} \right). \]	
-Similarly, a square matrix $L = (l_{ij})$ is \textit{lower triangular} if
-\[ i < j \Rightarrow l_{ij} = 0. \]
-\item \textbf{Symmetric matrices.} A square matrix $S = (s_{ij})$ is symmetric if \[ s_{ij} = s_{ji}~\forall~(i,j).\]
-\item \textbf{Positive-definite matrices.} A square matrix $P$ is positive-definite if the scalar value $\mathbf{z}^{\text{T}} P \mathbf{z}$ is strictly positive for all non-zero column vectors $\textbf{z}$.
-\end{itemize}
-\subsubsection{The Cholesky Decomposition}
-For a positive-definite matrix $A$, there exists a decomposition of $A$ such that
-\begin{equation}
-A = LL^{\text{T}}
-\end{equation}
-where $L$ is lower triangular. This decomposition is known as the Cholesky decomposition. With this, we lay out our first two theorems which will be useful for the discussions on computational efficiency of Gaussian processes.
+\begin{example} \label{ex11}
+Suppose we have
 
-\begin{thm} \label{posdef}
-For any real matrix $A \in \mathbb{R}^{n \times m}$, the product matrix $A^{\text{T}}A$ is positive definite i.e
 \begin{equation}
-\mathbf{z}^{\text{T}} A^{\text{T}}A \mathbf{z} > 0 ~ \forall ~ \mathbf{z} \in \mathbb{R}^{n}
+\mathbf{X} \sim \mathcal{N} \left( \left[ \begin{array}{c} 0 \\ 0 \end{array} \right], \left[ \begin{array}{c c} 1 & 0.5 \\ 0.5 & 1 \end{array} \right] \right),
 \end{equation}
+then we can plot the pdf for this distribution \ref{fig11}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{bivgaus}
+\caption{The pdf for $\mathbf{X}$ with accompanied contour plot}
+\label{fig11}
+\end{figure}
+\end{example}
+\subsubsection{Conditioning a Multivariate Gaussian} \label{gauscond}
+\begin{thm} \label{mvnc}
+Suppose now that a $k$-dimension continuous random vector $\mathbf{X}$ is jointly Gaussian with mean $\boldsymbol\mu$ and covariance $\Sigma$ and can be partitioned as follows
+\begin{equation}
+\mathbf{X} = \left[ \begin{array}{c} \mathbf{x}_1 \\ \mathbf{x}_2 \end{array} \right],~\mathbf{x}_1 \in \mathbb{R}^{q},~\mathbf{x}_2 \in \mathbb{R}^{k-q}.
+\end{equation}
+Then, we have the corresponding partitions for the mean and variance
+\begin{equation}
+\boldsymbol\mu = \left[ \begin{array}{c} \boldsymbol\mu_1 \\ \boldsymbol\mu_2 \end{array} \right],~~\Sigma = \left[ \begin{array}{c c} \Sigma_{11} & \Sigma_{12} \\ \Sigma_{21} & \Sigma_{22} \end{array} \right],
+\end{equation}
+where $\Sigma_{11} \in \mathbb{R}^{q \times q},~\Sigma_{21} = \Sigma_{12}^{\text{T}} \in \mathbb{R}^{(k - q) \times q},~\Sigma_{22} \in \mathbb{R}^{(k - q) \times (k - q)}$. Suppose that we observe values for $\mathbf{x}_2$, then the conditional posterior distribution is
+\begin{empheq}[box=\fbox]{align} \nonumber
+\mathbf{x}_1 | \mathbf{x}_2 & \sim \mathcal{N}(\boldsymbol\mu^*, \Sigma^*), \\
+\boldsymbol\mu^* & = \boldsymbol\mu_1 + \Sigma_{12}\Sigma_{22}^{-1}(\mathbf{x}_2 - \boldsymbol\mu_2), \\ \nonumber
+\Sigma^* & = \Sigma_{11} - \Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}. 
+\end{empheq}
 \end{thm}
-\begin{proof}
-\begin{align} \nonumber
-\mathbf{z}^{\text{T}} A^{\text{T}}A \mathbf{z} & = (A \mathbf{z})^{\text{T}} (A \mathbf{z}) \\
-& = || Az ||^2 > 0.
-\end{align}
-\end{proof}
-\begin{thm} \label{posdef2}
-For a positive-definite matrix $A$, there exists a lower-triangular matrix $U$ such that
-\begin{equation}
-A^{-1} = U U^{T}
-\end{equation}
-\end{thm}
-\begin{proof}
-For positive-definite matrix $A$, we have a Cholesky decomposition such that
-\begin{equation}
-A = L L^{\text{T}},
-\end{equation}
-then we have
-\begin{equation}
-A A^{-1} = L L^{\text{T}} A^{-1} = I,
-\end{equation}
-that is
-\begin{equation}
-A^{-1} = ( L^{\text{T}} )^{-1} L^{-1}.
-\end{equation}
-Since $L$ is lower triangular, if we write $( L^{\text{T}} )^{-1} = U$ then we have
-\begin{equation}
-A^{-1} = U U^{\text{T}},
-\end{equation}
-which is a positive-definite symmetric matrix such that we need only compute the upper-triangular elements of $U U^{\text{T}}$ in order to know all elements of $A^{-1}$.
-\end{proof}
+Theorem \ref{mvnc} is of critical importance for our purposes and we will revisit it and its implications when we begin discussing Gaussian Processes (GPs). We can observe bivariate conditional Gaussian distribution using \cref{ex11}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{cond_norm}
+\caption{The conditional probabilities for a Gaussian distribution centred at (0,0) for arbitrary values $a,b$.}
+\end{figure}
 \pagebreak
 \part{Linear Regression}
 \section{Introduction} \label{reg:intro}
@@ -508,7 +559,7 @@ then we search for $\hat{\boldsymbol\beta}$ such that
 \end{equation}
 The solution to which is
 \begin{equation}
-\hat{\boldsymbol\beta} = (X^{\text{T}} X)^{-1} X^{\text{T}}\mathbf{y},
+\boxed{\hat{\boldsymbol\beta} = (X^{\text{T}} X)^{-1} X^{\text{T}}\mathbf{y},}
 \end{equation}
 where $X^{\text{T}}X$ is the \textit{positive-definite} sum of squares matrix and is always invertible using Cholesky arithmetic \ref{posdef2} should it be of full rank.
 
@@ -573,11 +624,126 @@ that is, we fit a RBF centred at each integer within the domain of our data.
 \label{rbf}
 \end{figure}
 \end{example}
+\section{Bayesian Linear Regression}
+\subsection{Introduction}
+Our standard linear regression model is a frequentist approach to machine learning, and assumes data is generated from the model
+\begin{equation}
+y = f(\mathbf{x}) + \varepsilon,~~~ f(\mathbf{x}) = \boldsymbol\beta^{\text{T}}\mathbf{x}.
+\end{equation}
+where the only uncertainty is represented in the Gaussian distributed error term $\varepsilon$. In contrast, Bayesian linear regression assumes the responses are sampled from a Gaussian distribution
+\begin{equation}
+\mathbf{y} \sim \mathcal{N}(\boldsymbol\beta^{\text{T}}X, \sigma^2 I).
+\end{equation}
+We continue our analysis taking the Bayesian approach to better interpret uncertainty around the given data and furthermore predictive uncertainty.
+\subsection{Computing the Posterior}
+As we have mentioned, the likelihood for the standard linear regression model is given by
+\begin{equation}
+p(\mathbf{y}| X, \boldsymbol\beta) = \mathcal{N}(y|\boldsymbol\beta^{\text{T}}X, \sigma^2 I).
+\end{equation}
+For a Bayesian approach, we need to specify a prior over the parameters which incorporates our beliefs about $\boldsymbol\beta$ before having seen the data. We put a zero-mean Gaussian with covariance $\Sigma_p$ on the parameters such that
+\begin{equation}
+\boldsymbol\beta \sim \mathcal{N}(\mathbf{0}, \Sigma_p).
+\end{equation}
+Then, we can use Bayes' rule to determine an expression for a posterior on the parameters as follows
+\begin{equation}
+\text{posterior} = \frac{\text{likelihood} \times \text{prior}}{\text{marginal likelihood}} ~~ \Rightarrow ~~ p(\boldsymbol\beta| \mathbf{y}, X) = \frac{p(\mathbf{y}|\boldsymbol\beta^{\text{T}}X, \sigma^2 I)p(\boldsymbol\beta)}{p(\mathbf{y}|X)}.
+\end{equation}
+The normalizing constant is independent of the weights, so let us consider the terms of the posterior which are dependent on the weights and complete the square
+\begin{align}
+p(\Beta| \mathbf{y}, X) & \propto \exp\left( -\frac{1}{2\sigma^2}(\mathbf{y} - \BetaT X)^{\text{T}}(y - \BetaT X) \right) \exp \left( - \frac{1}{2}\BetaT \Sigma^{-1}_p \Beta \right) \\
+& \propto \exp \left( -\frac{1}{2}(\Beta - \bar{\Beta}) (\frac{1}{\sigma^2} XX^{\text{T}} + \Sigma_p^{-1}) (\Beta - \bar{\Beta})^{\text{T}}) \right),
+\end{align}
+where $\BetaT = \frac{1}{\sigma^2} \left( \sigma^{-2} XX^{\text{T}} + \Sigma_p^{-1} \right)^{-1} X \mathbf{y}$. We recognise this as nothing other than a Gaussian
+\begin{equation} \label{eq58}
+\boxed{p(\Beta|\mathbf{y}, X) \sim \mathcal{N}(\sigma^{-2}A^{-1}X\mathbf{y}, A^{-1}), ~~~ A = \sigma^{-2} XX^{\text{T}} + \Sigma_p^{-1}.}
+\end{equation}
+\subsection{Prediction using the Posterior}
+Often, our concern is with using distribution models to predict the value of the response variable at a given point $\mathbf{x}_*$. Within the Bayesian outlook, our task for prediction is to average over all possible parameter values, weighted by the probability we calculated for the posterior \ref{eq58}. If we denote the predictive distribution as $y_*$ corresponding to $\mathbf{x}^*$ then we have
+\begin{align}
+p(y_*| \mathbf{x}^*, X, \mathbf{y}) & = \int p(y_*|\mathbf{x}_*, \Beta)p(\Beta|X, \mathbf{y}) d \Beta \\
+ & = \mathcal{N}(\frac{1}{\sigma^2}\mathbf{x}_*^{\text{T}}A^{-1}X\mathbf{y}, \mathbf{x}_*^{\text{T}}A^{-1}\mathbf{x}_*).
+\end{align}
+\subsection{Conclusion}
+Bayesian linear regression provides deeper uncertainty quantification for regression problems by placing a prior on the parameters of the model and updating the likelihood of our model with our prior beliefs. The imposition of further probability measures on linear regression makes the Bayesian outlook a powerful regression tool.
 \pagebreak
 \part{Gaussian Processes}
 \section{Introduction}
-GPS ARE DEAD FAM
+Bayesian linear regression allows for greater quantification of our uncertainty of the underlying distribution of a response variable $y(\mathbf{x})$, however still has a focus on parametrizing $y$ with respect to $\mathbf{x}$ and the vector of parameters $\Beta$ such that
+\begin{equation}
+y = \BetaT \mathbf{x} + \varepsilon,
+\end{equation}
+where $\varepsilon$ is some noise. Suppose we wish to bypass the parametrization of $y$ and instead approach regression non-parametrically. Gaussian processes, or just GPs, allow us to do this by placing a prior on the underlying function which can be updated as we observe data. We can consider GPs to be an extension of the multivariate Gaussian distribution over an infinite number of variables, and much like a Gaussian our GP prior consists of a mean function $m(\mathbf{x})$ (often taken to be $0$) and a kernel function $\kappa(\mathbf{x}, \mathbf{x}^{\prime})$. If an underlying function $f$ has a GP prior with mean $m$ and kernel $\kappa$ we assume the notation
+\begin{equation}
+f(\mathbf{x}) \sim \mathcal{GP}(m(\mathbf{x}), \kappa(\mathbf{x}, \mathbf{x}^{\prime})).
+\end{equation}
+In order to perform GP regression, we require only these two functions. The mean function provides little insight into our prior understanding of underlying function, therefore we place a significant degree of importance onto the co-variance function. The covariance function, also referred to as the kernel function, describes our beliefs regarding the smoothness, periodicity and shape of the function we wish to uncover and two different kernels can yield wildly different predictive distributions for some given new point $\mathbf{x}_*$.
+\section{Gaussian Process Prior}
+In this section, we discuss the GP prior and its implications. We begin by providing a formal definition for GPs
+\begin{definition}[Gaussian Processes] \label{defGP}
+A potentially infinite collection of random-variables $\varkappa$ describes a Gaussian Process \textit{iff} any finite collection of elements $\mathcal{S} \subset \varkappa$ describe a Gaussian random variable, \textit{i.e.}
+\begin{equation}
+\mathcal{S} \sim \mathcal{N}(\boldsymbol\mu_\mathcal{S}, \Sigma_\mathcal{S}),
+\end{equation}
+where $\left( \boldsymbol\mu_\mathcal{S} \right)_i = \mathbb{E}(\left(\mathcal{S}\right)_i)$ is the mean of the RV and $(\Sigma_\mathcal{S})_{ij} = \kappa\left((\mathcal{S})_i, (\mathcal{S})_j\right)$ is a symmetric positive semi-definite co-variance matrix generated by the kernel function $\kappa$.
+\end{definition}
+We note again that the mean function $m$ is often taken to be 0, however this is not a requirement and we will later consider the case where $m(\mathbf{x}) \neq 0$. Let us briefly discuss the kernel function for GP regression $\kappa(\mathbf{x}, \mathbf{x}^{\prime})$. The kernel function describes our prior beliefs regarding the smoothness, periodicity and general shape of the underlying distributive function $f$. The kernel is used to generate the covariance functions for the subsets of data observed as explained in our definition for GPs \ref{defGP}, and for the time being we will use the most popular kernel function, the Squared Exponential or SE function. The SE function is defined as follows
+\begin{equation}
+\kappa_{\scaleto{\textit{SE}}{3pt}}(\mathbf{x}, \mathbf{x^{\prime}}) = \sigma^2 \exp \left( -\frac{1}{2l^2} (\mathbf{x} - \mathbf{x}^{\prime})^{\text{T}}(\mathbf{x} - \mathbf{x}^{\prime}) \right),
+\end{equation}
+where $\sigma^2$ controls the vertical scale of the function and $l$ is a horizontal length scale which controls the smoothness of the function. The SE kernel is infinitely differentiable therefore in general results in a distribution over smooth curves when used for the GP prior, however we can alter the smoothness of our sample functions by changing the hyper-parameter $l$. We present three values for $l$ in \cref{figsedraws}, and display a corresponding function drawn from a GP with a SE kernel prior equipped with such an $l$. It can be shown \cite{RasWil} that the SE kernel can be obtained by extending linear regression to incorporate Gaussian radial basis functions centred at infinitely many points on a given domain.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{sedraws}
+\caption{Left: plots of the SE kernel equipped with various values of the characteristic length scale $l$. Right: functions for the corresponding SE kernels drawn using multivariate Gaussian distribution}
+\label{figsedraws}
+\end{figure}
+While the SE kernel is certainly the most popular with regards to GPs, there are many more well-known kernels commonly used which reflect the beliefs regarding an underlying function's periodicity for example. For now, we will continue to use the SE kernel.
+\section{Prediction with GP Priors} \label{sec:pred}
+Simply drawing functions from a GP prior is not of much interest aside from comparing kernels and their hyperparameters. Instead, we are concerned with making predictions for unseen points using the GP prior and a set of observed data, forming a posterior distribution for the underlying function. Initially, we will consider the case where we assume our observations are noise free. That is, assume we have a set of observed data $\{(\mathbf{x}_i, y_i) | i = 1, \ldots, n\}$  and we wish to predict the values $\mathbf{y}_* \in \mathbb{R}^m$ of the underlying function at a set of test points $X_*$. Then, the joint distribution of the training outputs $\mathbf{y}$ and the test outputs $\mathbf{y}_*$ is
+\begin{equation} \label{gpprior}
+\left[ \begin{matrix} \mathbf{y} \\ \mathbf{y}_* \end{matrix} \right] \sim \mathcal{N} \left( \mathbf{0}, \left[ \begin{matrix} K(X, X) & K(X, X_*) \\ K(X_*, X) & K(X_*, X_*), \end{matrix} \right]\right)
+\end{equation}
+where $K(X, X_*) \in \mathbb{R}^{n \times m}$ is the covariance matrix generated by the kernel function applied to all ordered pairs of the set of observed data $X$ and the test data $X_*$, with similar definitions for $K(X,X), K(X_*, X)$ and $K(X_*, X_*)$. To determine a posterior distribution over the functions which agree with the observed data, we need now only perform conditioning \ref{gauscond} on the multivariate Gaussian in \cref{gpprior} given $X, X_*$ and $\mathbf{y}$
+\begin{equation}
+\boxed{\mathbf{y}_* | X, X_*, \mathbf{y} \sim \mathcal{N}\left( \boldsymbol\mu_*, \Sigma_* \right),}
+\end{equation}
+where
+\begin{empheq}[box=\fbox]{align}
+\boldsymbol\mu_* & = K(X_*, X) K(X, X)^{-1} \mathbf{y} \\
+\Sigma_* & = K(X_*, X_*) - K(X_*, X) K(X, X)^{-1}K(X, X_*).
+\end{empheq}
+The closed-form solution to this prediction problem is a remarkable property of GPs, providing not only a mean prediction of the underlying function our data is drawn from but also quantifying uncertainty regarding this prediction in the form of the posterior covariance matrix $\Sigma_*$. However, we see immediately the computational bottle-neck for GP prediction in the inversion of an $n \times n$ SPSD matrix, or at the very least the solution to the linear system $K(X,X)^{-1}\mathbf{y}$. Even by taking full advantage of the SPSD nature of the Gram matrix by performing the Cholesky decomposition $K = LL^{\text{T}}$, inverting this $n \times n$ matrix has a computational cost $\mathcal{O}(n^3)$ making it practically inaccessible for data-set sizes of order larger than $10^4$. We will later introduce methods for combating this bottle-neck through low-rank approximations and sparse alternatives to the matrix $K$ which can reduce the computational cost of GP regression at the expense of predictive accuracy and assurance of the uncertainty. First, let us examine the standard method kernel function and associated matrices and how model selection can drastically improve GP accuracy and measures for quantifying a GPs usefulness.
+\subsection{Noisy Data GPs} \label{sec:noisypred}
+The procedure described in \ref{sec:pred} assumes our observed data is noiseless however we can easily implement a model which assumes our data was observed with some random Gaussian noise i.e. $y(\mathbf{x}_i) = f(\mathbf{x_i}) + \varepsilon,~ \varepsilon \sim \mathcal{N}(0, \sigma_\varepsilon^2)$. Then we instead consider the Gram matrix \[K_\varepsilon(X,X) = K(X,X) + \sigma_\varepsilon^2 I\] and perform the same analysis as before but with this new matrix $K_\varepsilon$ in place of $K$. The computational cost of noisy GP prediction is still $\mathcal{O}(n^3)$.
+\subsection{Shorthand notation}
+We will proceed with some shorthand notation for the general form Gram matrices, which we will introduce now. We will refer to the Gram matrix $K(X,X) \in \mathbb{R}^{n \times n}$ as $K_{nn}$ or simply as $K$ if the context is clear. Therefore, we will refer to the noisy Gram matrix $K_\varepsilon(X,X)$ as $K_\varepsilon$. The matrix $K(X,X^*) \in \mathbb{R}^{n \times m}$ will be referred to as $K_*$ and $K(X^*, X)$ as $K_*^{\text{T}}$. In similar fashion, we have $K(X_*, X_*) = K_{**} \in \mathbb{R}^{m\times m}$.
+\subsection{Prediction with Non-Zero Mean}
+As mentioned, it is common in practice to form a GP prior with zero-mean, however it is not difficult to incorporate a mean function into the predictions using a GP posterior. For example, assume we have a GP prior
+\begin{equation}
+f(\mathbf{x}) \sim \mathcal{GP}(\mu(\mathbf{x}), \kappa(\mathbf{x}, \mathbf{x}^{\prime}),
+\end{equation}
+then the posterior distribution as per \ref{sec:noisypred} is
+\begin{align}
+\boldsymbol\mu_* & = \boldsymbol\mu(X_*) + K(X_*, X) K_\varepsilon(X, X)^{-1} ( \mathbf{y} - \boldsymbol\mu(X) ) \\
+\Sigma_* & = K(X_*, X_*) - K(X_*, X) K_\varepsilon(X, X)^{-1}K(X, X_*).
+\end{align}
+\section{Covariance Functions and Kernel Parameters}
+Covariance functions are of such paramount importance to GP regression that it warrants its own discussion. First, we will introduce some commonly used covariance functions and examine some functions sampled from GP priors with such covariances functions. We will discuss the properties of such functions and why they are so popular in practice. The second half of this section will consider forming new covariance functions and forming a space of functions using covariance mixture models.
+\subsection{Common Covariance Functions}
+In this section we introduce and discuss the most common covariance functions.
+\subsubsection{Squared Exponential}
+We have already come across the squared exponential kernel $\kappa_{\scaleto{\textit{SE}}{3pt}}(\mathbf{x}, \mathbf{x^{\prime}})$, however it is relevant for us to introduce a modification to the SE kernel by equipping it with automatic relevance determination (ARD). Simply put, ARD allows us to attach a separate length scale $l_j$ for element $x_j \in \mathbf{x}_i$. The SE-ARD kernel is as follows
+\begin{equation}
+\kappa_{\scaleto{\textit{SE-ARD}}{3pt}}(\mathbf{x}, \mathbf{x^{\prime}}) = \sigma^2 \exp \left( - \frac{1}{2} \sum_{j = 1}^D \left( \frac{x_j - x_j^{\prime}}{l_j} \right)^2 \right) = \sigma^2 \exp \left( -0.5 ( \mathbf{x} - \mathbf{x}^{\prime} )^{\text{T}} \boldsymbol\Delta^{-1} ( \mathbf{x} - \mathbf{x}^{\prime} ) \right),
+\end{equation}
+where $\boldsymbol\Delta = \diag(l_1^2, l_2^2, \ldots, l_D^2)$. Performing hyperparameter optimization for this kernel will now tune the values of $l_i$ such that we can select the right weight for each dimension of the inputs.
+\subsubsection{Rational Quadratic}
+The rational quadratic kernel is somewhat similar to the squared exponential in it produces sampled functions which are somewhat smooth as determined by the kernel hyperparameters. The RQ kernel is as follows
+\begin{equation}
+\kappa_{\scaleto{\textit{RQ}}{3pt}}(\mathbf{x}, \mathbf{x^{\prime}}) = \sigma^2 \left( 1 + \frac{( \mathbf{x} - \mathbf{x}^{\prime} )^{\text{T}}( \mathbf{x} - \mathbf{x}^{\prime} )}{2 \alpha l^2} \right)^{-\alpha}.
+\end{equation}
+This kernel can be interpreted as an infinite sum of different SE kernels, each equipped with different length scales. Here $\alpha$ determines the weighting between the length scales and $\lim_{\alpha \to \infty} \kappa_{\scaleto{\textit{RQ}}{3pt}}(\alpha; \mathbf{x}, \mathbf{x^{\prime}}, l, \sigma) = \kappa_{\scaleto{\textit{SE}}{3pt}}(\mathbf{x}, \mathbf{x^{\prime}}; l, \sigma)$.
 \pagebreak 
 \begin{bibdiv}
 \begin{biblist}
@@ -588,6 +754,17 @@ GPS ARE DEAD FAM
    date={1965},
    pages={xviii+662},
    review={\MR{0184422}},
+}
+\bib{RasWil}{book}{
+   author={Rasmussen, Carl Edward},
+   author={Williams, Christopher K. I.},
+   title={Gaussian processes for machine learning},
+   series={Adaptive Computation and Machine Learning},
+   publisher={MIT Press, Cambridge, MA},
+   date={2006},
+   pages={xviii+248},
+   isbn={978-0-262-18253-9},
+   review={\MR{2514435}},
 }
 \end{biblist}
 \end{bibdiv}

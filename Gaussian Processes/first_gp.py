@@ -1,50 +1,94 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy import spatial as spt
+from matplotlib import cm
 
-import numpy as np
+def find_s_d(X1, X2 = None):
+    if X2 is not None:
+        sqd = spt.distance.cdist(X1, X2, metric='sqeuclidean')
+    else:
+        sqd = spt.distance.cdist(X1, X1, metric='sqeuclidean')
+    return sqd
 
-def kernel(X1, X2, l=1., sigma_f=1.):
-    sqdist = np.sum(X1**2, 1).reshape(-1, 1) + np.sum(X2**2, 1) - 2 * np.dot(X1, X2.T)
+def SE(X1, X2, l=1., sigma_f=1.):
+    sqdist = find_s_d(X1, X2)
     return sigma_f**2 * np.exp(-0.5 / l**2 * sqdist)
 
-def kernel2(X1, X2, c = 0, d = 1):
-    return (np.sum(X1, 1).reshape(-1, 1) + np.sum(X2, 1) + c) ** d
+def Per(X1, X2, l = 1., p = 1., sigma_f = 1.):
+    sqdist = find_s_d(X1, X2)
+    return sigma_f ** 2 * np.exp(- 2 * l **(-2) * np.sin(np.pi * np.sqrt(sqdist) / p) ** 2)
 
-z = []
-var = 0.
-for i in range(10):
-    z_s = np.random.uniform(-12.,12.)
-    z.append(z_s)
-    x   = np.vstack(z)
-    y   = 0.1*x*np.sin(x)
-    x_s =  np.vstack(np.linspace(-12., 12., 500))
-    
-    K    = kernel(x, x)
-    n = len(K)
-    K += var * np.eye(n,n)
-    K_s  = kernel(x,x_s)
-    K_ss = kernel(x_s, x_s)
-    K_i  = np.linalg.inv(K)
-    
-    # Equation (7)
-    mu_s = K_s.T.dot(K_i).dot(y)
-    mu_s = np.hstack(mu_s).tolist()
-    
-    # Equation (8)
-    cov_s = K_ss - K_s.T.dot(K_i).dot(K_s)
-    N = np.random.multivariate_normal(mu_s, cov_s)
-    sigma = cov_s.diagonal()
-    cov_p = mu_s + 2*np.sqrt(sigma)
-    cov_m = mu_s - 2*np.sqrt(sigma)
-    
-    x_true = np.linspace(-12,12,500)
-    y_true = 0.1*x_true*np.sin(x_true)
-    plt.figure()
-    plt.fill(np.concatenate([x_s, x_s[::-1]]),
-             np.concatenate([cov_p,
-                            (cov_m)[::-1]]),alpha=.5, fc='b', ec='None', label='95% confidence interval')
-    plt.plot(x_s, mu_s, color = 'black')
-    plt.plot(x_true, y_true, color = 'red', linestyle = 'dashed')
-    plt.scatter(x, y, marker = '.', color ='red')
-    plt.plot(x_s, N, color = 'm', alpha = .3)
-    plt.show()
+def RQ(X1, X2, l =1., alpha = 1., sigma = 1.):
+    sqdist = find_s_d(X1, X2)
+    return ( 1 + sqdist / (2 * alpha * l ** 2)) ** (-1 * alpha)
+
+def LinKer(X1, X2, c = 1., d = 1. ):
+    return (X1 - c) @ (X2 - d).T
+
+x = np.vstack(np.linspace(0.0,10.0, 500))
+x_r = np.linspace(-10.,10, 1000)
+y_Per1 = 0.25 * np.exp(- 2 * 1.5 **(-2) * np.sin(np.pi * x_r  / 1.5) ** 2)
+y_Per2 = 0.25 * np.exp(- 2 * 3.0 **(-2) * np.sin(np.pi * x_r  / 5.5) ** 2)
+y_RQ1 = 0.25*( 1 + x_r ** 2 / (2 * 0.5 * 0.5 ** 2)) ** (-1 * 0.5)
+y_RQ2 = 0.25*( 1 + x_r ** 2 / (2 * 2.5 * 1.5 ** 2)) ** (-1 * 2.5)
+mu = np.array([0 for i in x])
+K11 = Per(x,x, l = 1.5, p = 1.5, sigma_f = 0.5)
+K12 = Per(x,x, l = 3., p = 5., sigma_f = 0.5)
+K21 = RQ(x,x,l=0.5, alpha = 0.5, sigma = 0.5)
+K22 = RQ(x,x,l=1.5, alpha = 2.5, sigma = 0.5)
+
+
+
+y1 = np.random.multivariate_normal(mu, K11)
+y2 = np.random.multivariate_normal(mu, K12)
+plt.figure(figsize = (10,3))
+plt.subplot(121)
+plt.plot(x_r, y_Per1, label = '$l = 1.5, p = 1.5$')
+plt.plot(x_r, y_Per2, label = '$l = 3.0, p = 5.0$')
+plt.xlim([-5,5])
+plt.ylim([-0.01,0.3])
+plt.yticks([0,0.25], labels=[0,'$\sigma^2$'])
+plt.xticks([0])
+plt.xlabel('$x - x^{\prime}$')
+plt.ylabel('$\kappa(x,x^{\prime}) $')
+plt.legend(loc=0)
+
+plt.subplot(122)
+plt.plot(x,y1)
+plt.plot(x,y2)
+plt.yticks([])
+plt.xticks([])
+plt.show()
+
+y1 = np.random.multivariate_normal(mu, K21)
+y2 = np.random.multivariate_normal(mu, K22)
+plt.figure(figsize = (10,3))
+plt.subplot(121)
+plt.plot(x_r, y_RQ1, label = '$ l = 0.5, \alpha = 0.5$')
+plt.plot(x_r, y_RQ2, label = '$ l = 1.5, \alpha = 2.5$')
+plt.xlim([-5,5])
+plt.ylim([-0.01,0.3])
+plt.yticks([0,0.25], labels=[0,'$\sigma^2$'])
+plt.xlabel('$x - x^{\prime}$')
+plt.ylabel('$\kappa(x,x^{\prime}) $')
+plt.legend(loc=0)
+
+plt.subplot(122)
+plt.plot(x,y1)
+plt.plot(x,y2)
+plt.yticks([])
+plt.xticks([])
+plt.show()
+
+fig = plt.figure()
+y = np.random.multivariate_normal(mu, K21 ** 2)
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(x, x, y, cmap=cm.viridis)
+ax.set_xlim(-3.,3.)
+ax.set_ylim(-3.,3.)
+
+
+# Adjust the limits, ticks and view angle
+ax.set_zlim(-0.15,0.2)
+ax.set_zticks(np.linspace(0,0.2,5))
+ax.view_init(25, -20)

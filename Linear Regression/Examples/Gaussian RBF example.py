@@ -2,15 +2,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 d = 20
-N = 200
+N = 19
 N_star = 1000
-x = np.linspace(-10, 10.0, N)
+x   =  np.array([i for i in range(1,20)]) 
+y   = np.array([3,4,3,10,9,5,8,2,4,4,16,8,10,14,6,7,18,40,36])
 x_star = np.linspace(-10, 10.0, N_star)
-y_true = np.vstack(x * np.sin(0.5*x))
-epsilon = np.random.normal(size = (N,1))
-y = y_true + epsilon
 
-centres = np.array([i for i in range(-10,10)])
+centres = np.array([i for i in range(1,20)])
 X = np.zeros((N, d))
 for i in range(N):
     for j in range(d):
@@ -28,6 +26,3 @@ for i in range(N_star):
 plt.figure()
 plt.plot(x_star, y_star, color = 'red')
 plt.scatter(x, y, marker = '.')
-plt.savefig('f5.pdf')
-
-print(Xt @ X)
