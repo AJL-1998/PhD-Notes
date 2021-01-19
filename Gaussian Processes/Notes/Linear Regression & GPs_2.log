@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.16)  14 JAN 2021 15:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.11.16)  18 JAN 2021 18:40
 entering extended mode
 **"./Linear Regression & GPs_2.tex"
 ("Linear Regression & GPs_2.tex"
@@ -1325,7 +1325,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 112
 (C:\Users\adayr\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<logo.png, id=154, 570.13pt x 146.5475pt>
+<logo.png, id=170, 570.13pt x 146.5475pt>
 File: logo.png Graphic file (type png)
 <use logo.png>
 Package pdftex.def Info: logo.png  used on input line 115.
@@ -1334,17 +1334,18 @@ Package pdftex.def Info: logo.png  used on input line 115.
 [1
 
 {C:/Users/adayr/AppData/Local/MiKTeX/pdftex/config/pdftex.map} <./logo.png>]
-("Linear Regression & GPs_2.toc")
+("Linear Regression & GPs_2.toc"pdfTeX warning (ext4): destination with the sam
+e identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.40 ... {9.1.3}Periodic}{25}{subsubsection.9.1.3}
+                                                  % [1])
 \tf@toc=\write6
 \openout6 = `"Linear Regression & GPs_2.toc"'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.139 \section
-              *{Introduction} \label{sec:intro} [1] [2] [3] [4] [5] [6]
-<gaus_graf.pdf, id=287, 722.7pt x 216.81pt>
+ [2] [3] [4] [5]
+[6] [7]
+<gaus_graf.pdf, id=311, 722.7pt x 216.81pt>
 File: gaus_graf.pdf Graphic file (type pdf)
 <use gaus_graf.pdf>
 Package pdftex.def Info: gaus_graf.pdf  used on input line 302.
@@ -1355,35 +1356,35 @@ Overfull \hbox (8.33133pt too wide) in paragraph at lines 308--309
 n dis-tri-bu-tion to higher dimension-
  []
 
-[7 <./gaus_graf.pdf>]
-<bivgaus.pdf, id=338, 433.62pt x 289.08pt>
+[8 <./gaus_graf.pdf>]
+<bivgaus.pdf, id=362, 433.62pt x 289.08pt>
 File: bivgaus.pdf Graphic file (type pdf)
 <use bivgaus.pdf>
 Package pdftex.def Info: bivgaus.pdf  used on input line 327.
 (pdftex.def)             Requested size: 321.52562pt x 214.36134pt.
- [8 <./bivgaus.pdf>]
-<cond_norm.pdf, id=364, 505.89pt x 505.89pt>
+ [9 <./bivgaus.pdf>]
+<cond_norm.pdf, id=388, 505.89pt x 505.89pt>
 File: cond_norm.pdf Graphic file (type pdf)
 <use cond_norm.pdf>
 Package pdftex.def Info: cond_norm.pdf  used on input line 353.
 (pdftex.def)             Requested size: 321.52562pt x 321.5299pt.
- [9 <./cond_norm.pdf>] [10] [11]
-[12]
+ [10 <./cond_norm.pdf>] [11] [12]
+[13]
 
 pdfTeX warning: pdflatex (file ./data_graphmain.pdf): PDF inclusion: found PDF 
 version <1.7>, but at most version <1.5> allowed
-<data_graphmain.pdf, id=451, 844.95674pt x 597.432pt>
+<data_graphmain.pdf, id=475, 844.95674pt x 597.432pt>
 File: data_graphmain.pdf Graphic file (type pdf)
 <use data_graphmain.pdf>
 Package pdftex.def Info: data_graphmain.pdf  used on input line 484.
 (pdftex.def)             Requested size: 281.33261pt x 198.92168pt.
-<ex1.pdf, id=459, 722.7pt x 722.7pt>
+<ex1.pdf, id=483, 722.7pt x 722.7pt>
 File: ex1.pdf Graphic file (type pdf)
 <use ex1.pdf>
 Package pdftex.def Info: ex1.pdf  used on input line 512.
 (pdftex.def)             Requested size: 200.95274pt x 200.95412pt.
-[13 <./data_graphmain.pdf>] [14 <./ex1.pdf>] [15]
-<polyBF_example.pdf, id=536, 433.62pt x 289.08pt>
+[14 <./data_graphmain.pdf>] [15 <./ex1.pdf>] [16]
+<polyBF_example.pdf, id=560, 433.62pt x 289.08pt>
 File: polyBF_example.pdf Graphic file (type pdf)
 <use polyBF_example.pdf>
 Package pdftex.def Info: polyBF_example.pdf  used on input line 597.
@@ -1398,32 +1399,64 @@ nt rep-re-sent-ing the vari-ance of our ba-sis func-tions and $\OML/cmm/b/it/10
 
 LaTeX Warning: Reference `fig3' on page 1 undefined on input line 611.
 
-<f5.pdf, id=538, 433.62pt x 289.08pt>
+<f5.pdf, id=562, 433.62pt x 289.08pt>
 File: f5.pdf Graphic file (type pdf)
 <use f5.pdf>
 Package pdftex.def Info: f5.pdf  used on input line 622.
 (pdftex.def)             Requested size: 321.52562pt x 214.36134pt.
-[16 <./polyBF_example.pdf>] [17 <./f5.pdf>] [18] [19]
-<sedraws.pdf, id=612, 867.24pt x 578.16pt>
+[17 <./polyBF_example.pdf>] [18 <./f5.pdf>] [19] [20]
+<sedraws.pdf, id=636, 867.24pt x 578.16pt>
 File: sedraws.pdf Graphic file (type pdf)
 <use sedraws.pdf>
 Package pdftex.def Info: sedraws.pdf  used on input line 697.
 (pdftex.def)             Requested size: 401.9055pt x 267.94177pt.
- [20 <./sedraws.pdf>]
-[21] [22] [23] ("Linear Regression & GPs_2.aux")
+ [21 <./sedraws.pdf>]
+<gp_ex.pdf, id=683, 867.24pt x 289.08pt>
+File: gp_ex.pdf Graphic file (type pdf)
+<use gp_ex.pdf>
+Package pdftex.def Info: gp_ex.pdf  used on input line 718.
+(pdftex.def)             Requested size: 401.9055pt x 133.97089pt.
+
+[22 <./gp_ex.pdf>]
+<hyper_2d.png, id=731, 361.35pt x 361.35pt>
+File: hyper_2d.png Graphic file (type png)
+<use hyper_2d.png>
+Package pdftex.def Info: hyper_2d.png  used on input line 742.
+(pdftex.def)             Requested size: 196.9359pt x 196.9346pt.
+<heat_2d.png, id=732, 361.35pt x 361.35pt>
+File: heat_2d.png Graphic file (type png)
+<use heat_2d.png>
+Package pdftex.def Info: heat_2d.png  used on input line 749.
+(pdftex.def)             Requested size: 196.9359pt x 196.9346pt.
+ [23] [24 <./hyper_2d.png> <./heat_2d.png>]
+<rq_ker.pdf, id=751, 867.24pt x 289.08pt>
+File: rq_ker.pdf Graphic file (type pdf)
+<use rq_ker.pdf>
+Package pdftex.def Info: rq_ker.pdf  used on input line 773.
+(pdftex.def)             Requested size: 401.9055pt x 133.97089pt.
+<per_ker.pdf, id=752, 867.24pt x 289.08pt>
+File: per_ker.pdf Graphic file (type pdf)
+<use per_ker.pdf>
+Package pdftex.def Info: per_ker.pdf  used on input line 789.
+(pdftex.def)             Requested size: 401.9055pt x 133.97089pt.
+ [25 <./rq_ker.pdf>] [26 <./per_ker.pdf>] [27] ("Linear Regression & GPs_2.aux"
+)
 Package rerunfilecheck Info: File `"Linear Regression & GPs_2".out' has not cha
 nged.
-(rerunfilecheck)             Checksum: 0F96FBF368CB8CE38D6B488144EA73F0;2687.
+(rerunfilecheck)             Checksum: D27EC46B9E3A7A7610BABFE344CFEABA;2959.
 
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 38973 strings out of 479799
- 911049 string characters out of 2869722
- 1274189 words of memory out of 3000000
- 55090 multiletter control sequences out of 15000+200000
+ 39031 strings out of 479799
+ 911909 string characters out of 2869722
+ 1274761 words of memory out of 3000000
+ 55134 multiletter control sequences out of 15000+200000
  556637 words of font info for 106 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,13n,111p,1801b,914s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1464,9 +1497,9 @@ ts/cm/cmti8.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/type1/publi
 c/amsfonts/cm/cmti9.pfb><C:/Users/adayr/AppData/Local/Programs/MiKTeX/fonts/typ
 e1/public/amsfonts/symbols/msam10.pfb><C:/Users/adayr/AppData/Local/Programs/Mi
 KTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Linear Regression & GPs_2.pdf" (24 pages, 763554 bytes).
+Output written on "Linear Regression & GPs_2.pdf" (28 pages, 1033635 bytes).
 PDF statistics:
- 835 PDF objects out of 1000 (max. 8388607)
- 188 named destinations out of 1000 (max. 500000)
- 354 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 987 PDF objects out of 1000 (max. 8388607)
+ 202 named destinations out of 1000 (max. 500000)
+ 411 words of extra memory for PDF output out of 10000 (max. 10000000)
 

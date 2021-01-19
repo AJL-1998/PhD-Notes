@@ -714,6 +714,11 @@ where
 \Sigma_* & = K(X_*, X_*) - K(X_*, X) K(X, X)^{-1}K(X, X_*).
 \end{empheq}
 The closed-form solution to this prediction problem is a remarkable property of GPs, providing not only a mean prediction of the underlying function our data is drawn from but also quantifying uncertainty regarding this prediction in the form of the posterior covariance matrix $\Sigma_*$. However, we see immediately the computational bottle-neck for GP prediction in the inversion of an $n \times n$ SPSD matrix, or at the very least the solution to the linear system $K(X,X)^{-1}\mathbf{y}$. Even by taking full advantage of the SPSD nature of the Gram matrix by performing the Cholesky decomposition $K = LL^{\text{T}}$, inverting this $n \times n$ matrix has a computational cost $\mathcal{O}(n^3)$ making it practically inaccessible for data-set sizes of order larger than $10^4$. We will later introduce methods for combating this bottle-neck through low-rank approximations and sparse alternatives to the matrix $K$ which can reduce the computational cost of GP regression at the expense of predictive accuracy and assurance of the uncertainty. First, let us examine the standard method kernel function and associated matrices and how model selection can drastically improve GP accuracy and measures for quantifying a GPs usefulness.
+\begin{figure}[H]
+\includegraphics[width=1.0\textwidth]{gp_ex}
+\caption{An example of conditioning a GP prior after observing data from an underlying function.}
+\label{gp_ex}
+\end{figure}
 \subsection{Noisy Data GPs} \label{sec:noisypred}
 The procedure described in \ref{sec:pred} assumes our observed data is noiseless however we can easily implement a model which assumes our data was observed with some random Gaussian noise i.e. $y(\mathbf{x}_i) = f(\mathbf{x_i}) + \varepsilon,~ \varepsilon \sim \mathcal{N}(0, \sigma_\varepsilon^2)$. Then we instead consider the Gram matrix \[K_\varepsilon(X,X) = K(X,X) + \sigma_\varepsilon^2 I\] and perform the same analysis as before but with this new matrix $K_\varepsilon$ in place of $K$. The computational cost of noisy GP prediction is still $\mathcal{O}(n^3)$.
 \subsection{Shorthand notation}
@@ -728,6 +733,26 @@ then the posterior distribution as per \ref{sec:noisypred} is
 \boldsymbol\mu_* & = \boldsymbol\mu(X_*) + K(X_*, X) K_\varepsilon(X, X)^{-1} ( \mathbf{y} - \boldsymbol\mu(X) ) \\
 \Sigma_* & = K(X_*, X_*) - K(X_*, X) K_\varepsilon(X, X)^{-1}K(X, X_*).
 \end{align}
+\subsection{High Dimension Inputs}
+Our figures thus far have considered one-dimensional inputs however GPs are defined up to arbitrarily high dimension input vectors $\mathbf{x}$. The squared exponential covariance function can be extended to higher dimensions by equipping automatic relevance determination to give each dimension of the input a weighted length scale. We demonstrate a 2-D input GP in \cref{fig:2d}.
+\begin{figure}[H]
+\begin{center}
+\begin{minipage}{0.49\textwidth}
+\begin{center}
+\includegraphics[width=1.0\textwidth]{hyper_2d}
+\end{center}
+\caption{Sample function from a 2-D input GP with mean 0 and SE-ARD covariance function}
+\label{fig:2d}
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+\begin{center}
+\includegraphics[width=1.0\textwidth]{heat_2d}
+\end{center}
+\caption{Heat map for the drawn function}
+\label{fig:second}
+\end{minipage}
+\end{center}
+\end{figure}
 \section{Covariance Functions and Kernel Parameters}
 Covariance functions are of such paramount importance to GP regression that it warrants its own discussion. First, we will introduce some commonly used covariance functions and examine some functions sampled from GP priors with such covariances functions. We will discuss the properties of such functions and why they are so popular in practice. The second half of this section will consider forming new covariance functions and forming a space of functions using covariance mixture models.
 \subsection{Common Covariance Functions}
@@ -741,9 +766,38 @@ where $\boldsymbol\Delta = \diag(l_1^2, l_2^2, \ldots, l_D^2)$. Performing hyper
 \subsubsection{Rational Quadratic}
 The rational quadratic kernel is somewhat similar to the squared exponential in it produces sampled functions which are somewhat smooth as determined by the kernel hyperparameters. The RQ kernel is as follows
 \begin{equation}
-\kappa_{\scaleto{\textit{RQ}}{3pt}}(\mathbf{x}, \mathbf{x^{\prime}}) = \sigma^2 \left( 1 + \frac{( \mathbf{x} - \mathbf{x}^{\prime} )^{\text{T}}( \mathbf{x} - \mathbf{x}^{\prime} )}{2 \alpha l^2} \right)^{-\alpha}.
+\kappa_{\scaleto{\textit{RQ}}{3pt}}(\mathbf{x}, \mathbf{x^{\prime}}) = \sigma^2 \left( 1 + \frac{( \mathbf{x} - \mathbf{x}^{\prime} )^{\text{T}}( \mathbf{x} - \mathbf{x}^{\prime} )}{2 a l^2} \right)^{-a}.
 \end{equation}
-This kernel can be interpreted as an infinite sum of different SE kernels, each equipped with different length scales. Here $\alpha$ determines the weighting between the length scales and $\lim_{\alpha \to \infty} \kappa_{\scaleto{\textit{RQ}}{3pt}}(\alpha; \mathbf{x}, \mathbf{x^{\prime}}, l, \sigma) = \kappa_{\scaleto{\textit{SE}}{3pt}}(\mathbf{x}, \mathbf{x^{\prime}}; l, \sigma)$.
+This kernel can be interpreted as an infinite sum of different SE kernels, each equipped with different length scales. Here $a$ determines the weighting between the length scales and $\lim_{a \to \infty} \kappa_{\scaleto{\textit{RQ}}{3pt}}(a; \mathbf{x}, \mathbf{x^{\prime}}, l, \sigma) = \kappa_{\scaleto{\textit{SE}}{3pt}}(\mathbf{x}, \mathbf{x^{\prime}}; l, \sigma)$. We observe the form of the RQ kernel in \cref{rqdraws} and sample some functions drawn from a GP with an RQ kernel prior.
+\begin{figure}
+\includegraphics[width=1.0\textwidth]{rq_ker}
+\caption{Plot of the RQ kernel with two different length scales and scale weights, and draws from GPs with RQ priors.}
+\label{rqdraws}
+\end{figure}
+\subsubsection{Periodic}
+A periodic kernel reflects our prior knowledge about the repetitive qualities of an underlying function. The orthodox periodic kernel, derived by David Mackay, produces sampled functions which are exactly periodic and is of the form
+\begin{equation}
+\kappa_{\scaleto{\textit{PER}}{3pt}}(\mathbf{x}, \mathbf{x^{\prime}}) = \sigma^2 \exp \left( -\frac{2}{l^2} \sin^2 \left( \pi \frac{|\mathbf{x} - \mathbf{x}^{\prime}|}{p} \right)  \right),
+\end{equation}
+where $|\cdot |$ represents the Euclidean distance function. The components of this kernel are easily interpretable,
+\begin{itemize}
+\item $\sigma$ the overall variance.
+\item $l$ the length scale.
+\item $p$ the period, dictating the distance between the start of each repetition.
+\end{itemize}
+\begin{figure}[H]
+\includegraphics[width=1.0\textwidth]{per_ker}
+\caption{Plot of the periodic kernel with varying hyperparameters, and draws from GPs with periodic priors}
+\end{figure}
+\subsubsection{Linear}
+A GP with a linear kernel prior is nothing other than simple Bayesian linear regression. At a cost scaling with $\mathcal{O}(n^3)$, this is a very inefficient way of performing linear regression and thus this kernel is rarely used in practice on its own. It has the form
+\begin{equation}
+\kappa_{\scaleto{\textit{PER}}{3pt}}(\mathbf{x}, \mathbf{x^{\prime}}) = \sigma_1^2 + \sigma_2^2 (\mathbf{x} - c \cdot \mathbf{1}) \cdot (\mathbf{x}^{\prime} - d \cdot \mathbf{1})^\text{T},
+\end{equation}
+where $c, d \in \mathbb{R}$ and $\mathbf{1}$ is a column vector of ones.
+\subsection{Combining Kernels}
+
+
 \pagebreak 
 \begin{bibdiv}
 \begin{biblist}
